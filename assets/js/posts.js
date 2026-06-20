@@ -24,7 +24,7 @@ var POSTS = [
     date: "2026-06-19",
     url: "posts/first-mock-financial-plan.html",
     excerpt:
-      "My first real assignment interning at Integritas Wealth Management: a full mock plan for a couple in debt with very high goals. What was harder than I expected, and the lesson that stuck."
+      "My first real assignment interning at Integritas Wealth Strategies: a full mock plan for a couple in debt with very high goals. What was harder than I expected, and the lesson that stuck."
   }
 
   // ----- HIDDEN DRAFTS -------------------------------------------------
