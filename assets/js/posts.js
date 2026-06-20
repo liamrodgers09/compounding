@@ -32,10 +32,9 @@ var POSTS = [
   },
   {
     title: "What I actually learned building my first mock financial plan",
-    date: "2026-05-28",
+    date: "2026-06-19",
     url: "posts/first-mock-financial-plan.html",
     excerpt:
-      "I built a mock plan in RightCapital while shadowing a CFP. Here I work out what was harder than I expected, and the one lesson about risk that stuck.",
-    draft: true
+      "My first real assignment interning at Integritas Wealth Management: a full mock plan for a couple in debt with very high goals. What was harder than I expected, and the lesson that stuck."
   }
 ];
