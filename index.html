@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>Compounding · A finance learning journal by Liam Rodgers</title>
   <meta name="description" content="A running record of what I am learning about finance in real time: shadowing a financial advisor, building real plans, and trading my own positions. By Liam Rodgers, Charleston SC." />
   <meta name="theme-color" content="#15243b" />

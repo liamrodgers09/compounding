@@ -3,6 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>What I actually learned building my first mock financial plan · Compounding</title>
   <meta name="description" content="Building a mock plan in RightCapital while shadowing a CFP: what was harder than I expected and the one lesson about risk that stuck." />
   <meta name="theme-color" content="#15243b" />

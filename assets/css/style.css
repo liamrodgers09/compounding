@@ -2,9 +2,17 @@
    Compounding: a personal finance learning journal
    One stylesheet for the whole site. Edit the variables in :root to
    re-skin everything (colors, fonts, spacing) in one place.
+
+   Themes: the light palette lives in :root. The dark palette lives in the
+   [data-theme="dark"] block near the bottom and only overrides variables,
+   so the two stay in sync. A small script in each page's <head> sets the
+   theme before paint (no flash), and the toggle button in the header (added
+   by main.js) lets visitors switch and remembers the choice.
    ========================================================================= */
 
 :root {
+  color-scheme: light;
+
   /* Palette: navy, charcoal, off-white, one muted gold accent */
   --bg: #f6f4ee;          /* warm off-white background */
   --surface: #ffffff;     /* cards and panels */
@@ -17,6 +25,18 @@
   --accent: #b0843b;      /* muted gold */
   --accent-dark: #8a6526; /* hover / active */
   --accent-soft: #f0e7d4; /* tag and callout fills */
+
+  /* Role-based colors so a theme can flip without breaking dual-use values */
+  --header-bg: rgba(246, 244, 238, 0.88);
+  --cta-bg: var(--navy);
+  --cta-bg-hover: var(--navy-soft);
+  --cta-text: #ffffff;
+  --footer-bg: var(--navy);
+  --footer-text: #cdd6e2;
+  --footer-strong: #ffffff;
+  --footer-note: #8597ad;
+  --callout-border: #e6d8b8;
+  --callout-text: #5b4a26;
 
   --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
@@ -139,8 +159,8 @@ main {
   position: absolute;
   left: 1rem;
   top: -3rem;
-  background: var(--navy);
-  color: #fff;
+  background: var(--cta-bg);
+  color: var(--cta-text);
   padding: 0.6rem 1rem;
   border-radius: var(--radius);
   z-index: 50;
@@ -149,7 +169,7 @@ main {
 
 .skip-link:focus {
   top: 1rem;
-  color: #fff;
+  color: var(--cta-text);
 }
 
 /* ---------- Header / navigation --------------------------------------- */
@@ -158,7 +178,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(246, 244, 238, 0.88);
+  background: var(--header-bg);
   backdrop-filter: saturate(140%) blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -254,6 +274,63 @@ main {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
+/* ---------- Theme toggle (added to the header by main.js) ------------- */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--navy);
+  cursor: pointer;
+  flex: none;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* show the moon in light mode (click for dark), the sun in dark mode */
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+/* Right-align the brand so nav + toggles group on the right, in this order */
+.brand {
+  margin-right: auto;
+}
+
+.site-nav {
+  order: 1;
+}
+
+.theme-toggle {
+  order: 2;
+}
+
+.nav-toggle {
+  order: 3;
+}
+
 /* ---------- Buttons --------------------------------------------------- */
 
 .button {
@@ -266,16 +343,16 @@ main {
   line-height: 1;
   padding: 0.85rem 1.4rem;
   border-radius: var(--radius);
-  background: var(--navy);
-  color: #fff;
+  background: var(--cta-bg);
+  color: var(--cta-text);
   text-decoration: none;
-  border: 1px solid var(--navy);
+  border: 1px solid var(--cta-bg);
   transition: background 0.18s ease, transform 0.18s ease, color 0.18s ease;
 }
 
 .button:hover {
-  background: var(--navy-soft);
-  color: #fff;
+  background: var(--cta-bg-hover);
+  color: var(--cta-text);
   transform: translateY(-1px);
 }
 
@@ -581,7 +658,7 @@ main {
 
 .callout {
   background: var(--accent-soft);
-  border: 1px solid #e6d8b8;
+  border: 1px solid var(--callout-border);
   border-left: 3px solid var(--accent);
   border-radius: var(--radius);
   padding: 1.1rem 1.3rem;
@@ -591,7 +668,7 @@ main {
 .callout p {
   font-family: var(--font-sans);
   font-size: 0.96rem;
-  color: #5b4a26;
+  color: var(--callout-text);
   margin: 0;
 }
 
@@ -669,8 +746,8 @@ main {
   flex-shrink: 0;
   margin-top: clamp(3rem, 8vw, 5rem);
   border-top: 1px solid var(--line);
-  background: var(--navy);
-  color: #cdd6e2;
+  background: var(--footer-bg);
+  color: var(--footer-text);
 }
 
 .site-footer__inner {
@@ -685,7 +762,7 @@ main {
 .site-footer__brand {
   font-family: var(--font-serif);
   font-size: 1.25rem;
-  color: #fff;
+  color: var(--footer-strong);
   margin: 0;
 }
 
@@ -699,20 +776,62 @@ main {
 }
 
 .site-footer__nav a {
-  color: #cdd6e2;
+  color: var(--footer-text);
   font-size: 0.92rem;
   text-decoration: none;
 }
 
 .site-footer__nav a:hover {
-  color: #fff;
+  color: var(--footer-strong);
 }
 
 .site-footer__note {
   width: 100%;
   font-size: 0.84rem;
-  color: #8597ad;
+  color: var(--footer-note);
   margin: 0;
+}
+
+/* ---------- Theme transition ------------------------------------------ */
+
+body,
+.site-header,
+.site-footer {
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* ---------- Dark theme ------------------------------------------------ */
+/* Only overrides variables. The light values above are the source of truth. */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f1824;          /* deep navy, not pure black */
+  --surface: #18222f;     /* cards and panels */
+  --navy: #f3ead6;        /* now the light emphasis color for headings */
+  --navy-soft: #ffffff;
+  --ink: #e7e3d9;         /* body text */
+  --ink-soft: #b4bac1;    /* secondary text */
+  --muted: #8a929c;       /* dates, meta, labels */
+  --line: #2a3543;        /* hairline borders */
+  --accent: #c89b54;      /* gold, lifted a touch for the dark background */
+  --accent-dark: #d6ac63; /* links and small accents, brighter on dark */
+  --accent-soft: #241d10; /* tag and callout fills */
+
+  --header-bg: rgba(15, 24, 36, 0.85);
+  --cta-bg: #f3ead6;      /* light button on dark */
+  --cta-bg-hover: #ffffff;
+  --cta-text: #15243b;    /* dark text on the light button */
+  --footer-bg: #0a121d;
+  --footer-text: #aeb8c5;
+  --footer-strong: #ffffff;
+  --footer-note: #76828f;
+  --callout-border: #4a3f22;
+  --callout-text: #d8c9a0;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
 /* ---------- Responsive ------------------------------------------------ */
