@@ -109,13 +109,13 @@
     });
   }
 
-  /* ---------- "Current" menu + Reading List status block -------------- */
-  // Both are built from the CURRENT object at the top and show only the
-  // facets that have text, so empty ones never appear anywhere.
+  /* ---------- "Current" page: nav link + the list of what I'm doing ---- */
+  // Built from the CURRENT object at the top. The nav link goes to its own
+  // page (current.html), which lists every facet that has text.
   var CURRENT_FACETS = [
-    { key: "researching", id: "current-researching", line: "Currently researching", nav: "Currently researching" },
-    { key: "reading", id: "current-reading", line: "Currently reading", nav: "Currently reading" },
-    { key: "question", id: "current-question", line: "Current question", nav: "Currently questioning" }
+    { key: "researching", line: "Currently researching" },
+    { key: "reading", line: "Currently reading" },
+    { key: "question", line: "Current question" }
   ];
 
   var currentFilled = CURRENT_FACETS.filter(function (facet) {
@@ -123,87 +123,34 @@
   });
 
   if (currentFilled.length) {
+    // 1) add a "Current" link to the nav on every page, after Reading List
     var rlLink = document.querySelector(
       '.site-nav__list a[href$="reading-list.html"]'
     );
-    var rlBase = rlLink ? rlLink.getAttribute("href") : "reading-list.html";
-
-    // 1) the "Current" dropdown, added to the nav on every page
-    var navList = document.querySelector(".site-nav__list");
-    if (navList && rlLink) {
-      var currentLi = document.createElement("li");
-      currentLi.className = "nav-current";
-      // The menu always lists all three facets. A filled one links to its
-      // line on the Reading List; an empty one links to the section itself.
-      var menuHtml = CURRENT_FACETS
-        .map(function (facet) {
-          var hasText =
-            CURRENT[facet.key] && String(CURRENT[facet.key]).trim() !== "";
-          var target = rlBase + "#" + (hasText ? facet.id : "currently-learning");
-          return '<li><a href="' + target + '">' + facet.nav + "</a></li>";
-        })
-        .join("");
-      currentLi.innerHTML =
-        '<button class="nav-current__toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
-        'Current<span class="nav-current__caret" aria-hidden="true"></span>' +
-        "</button>" +
-        '<ul class="nav-current__menu">' + menuHtml + "</ul>";
-      rlLink.closest("li").insertAdjacentElement("afterend", currentLi);
-
-      var currentToggle = currentLi.querySelector(".nav-current__toggle");
-      var closeCurrent = function () {
-        currentLi.classList.remove("is-open");
-        currentToggle.setAttribute("aria-expanded", "false");
-      };
-      currentToggle.addEventListener("click", function (event) {
-        event.stopPropagation();
-        var open = currentLi.classList.toggle("is-open");
-        currentToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-      currentLi
-        .querySelector(".nav-current__menu")
-        .addEventListener("click", closeCurrent);
-      document.addEventListener("click", function (event) {
-        if (!currentLi.contains(event.target)) closeCurrent();
-      });
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") closeCurrent();
-      });
+    if (rlLink) {
+      var prefix = rlLink.getAttribute("href").replace("reading-list.html", "");
+      var onCurrentPage = /current\.html$/.test(location.pathname);
+      var li = document.createElement("li");
+      li.innerHTML =
+        '<a href="' + prefix + 'current.html"' +
+        (onCurrentPage ? ' class="is-active" aria-current="page"' : "") +
+        ">Current</a>";
+      rlLink.closest("li").insertAdjacentElement("afterend", li);
     }
 
-    // 2) the "Currently learning" block at the top of the Reading List page
-    var currentBlock = document.getElementById("currently-learning");
-    if (currentBlock) {
-      var rowsHtml = currentFilled
+    // 2) on the Current page, list everything I am currently doing
+    var currentList = document.getElementById("current-list");
+    if (currentList) {
+      currentList.innerHTML = currentFilled
         .map(function (facet) {
           return (
-            '<div class="current-item" id="' + facet.id + '">' +
+            '<div class="current-item">' +
             '<p class="current-item__label">' + facet.line + "</p>" +
             '<p class="current-item__text">' + escapeHtml(CURRENT[facet.key]) + "</p>" +
             "</div>"
           );
         })
         .join("");
-      currentBlock.innerHTML =
-        '<p class="eyebrow">Currently learning</p>' +
-        '<div class="current-grid">' + rowsHtml + "</div>";
-      currentBlock.hidden = false;
-
-      // Arriving from a Current menu link on another page: the target line is
-      // drawn by JS, so the browser's own jump can land at the top instead.
-      // Re-do the scroll ourselves, just below the sticky header.
-      if (location.hash && document.getElementById(location.hash.slice(1))) {
-        var landOnFacet = function () {
-          var el = document.getElementById(location.hash.slice(1));
-          if (!el) return;
-          var y = el.getBoundingClientRect().top + window.scrollY - 80;
-          window.scrollTo(0, y < 0 ? 0 : y);
-        };
-        requestAnimationFrame(function () {
-          requestAnimationFrame(landOnFacet);
-        });
-        window.addEventListener("load", landOnFacet);
-      }
     }
   }
 

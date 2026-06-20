@@ -939,6 +939,25 @@ main {
   }
 }
 
+/* The Current page lists each facet as its own card */
+#current-list {
+  max-width: 46rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+#current-list .current-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1.4rem 1.6rem;
+}
+
+#current-list .current-item__text {
+  font-size: 1.25rem;
+}
+
 /* ---------- Footer ---------------------------------------------------- */
 
 .site-footer {
