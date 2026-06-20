@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal · Compounding</title>
+  <meta name="description" content="Every post, newest first. Each one is something I actually did or thought about while learning finance, not general advice." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">Journal</p>
+        <h1 class="page-head__title">Everything I have written down</h1>
+        <p class="page-head__lead">
+          Newest first. Each post is something I actually did or thought about,
+          not general advice you could find anywhere else.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="card-list card-list--stack" id="all-posts">
+          <noscript>
+            <ul class="plainlist">
+              <li><a href="posts/what-a-bad-trade-taught-me.html">What a bad trade taught me</a></li>
+              <li><a href="posts/private-equity-conversation.html">A conversation that changed how I think about private equity</a></li>
+              <li><a href="posts/first-mock-financial-plan.html">What I actually learned building my first mock financial plan</a></li>
+            </ul>
+          </noscript>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/posts.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
