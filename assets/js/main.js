@@ -1,11 +1,24 @@
 /* =========================================================================
    main.js: the only script that runs the site.
-   Three jobs: the light/dark theme toggle, the mobile menu toggle, and
-   rendering the post lists. Plain vanilla JS, no dependencies.
+   Jobs: the light/dark theme toggle, the mobile menu toggle, the "Current"
+   menu and status block, and rendering the post lists. Plain vanilla JS.
    ========================================================================= */
 
 (function () {
   "use strict";
+
+  /* =====================================================================
+     EDIT YOUR "CURRENT" STATUS HERE
+     Put a short line next to any of these. Leave a value as "" to hide it
+     from both the Current menu and the Reading List page. Fill one in later
+     and it appears in both places automatically, nothing else to change.
+     ===================================================================== */
+  var CURRENT = {
+    researching: "",
+    reading: "",
+    question:
+      "Are the 100-hour weeks investment banking is known for actually worth it for the pay?"
+  };
 
   /* ---------- Theme toggle (light / dark) ----------------------------- */
   // The theme itself is applied before paint by a small inline script in each
@@ -92,6 +105,90 @@
         toggle.setAttribute("aria-expanded", "false");
       }
     });
+  }
+
+  /* ---------- "Current" menu + Reading List status block -------------- */
+  // Both are built from the CURRENT object at the top and show only the
+  // facets that have text, so empty ones never appear anywhere.
+  var CURRENT_FACETS = [
+    { key: "researching", id: "current-researching", line: "Currently researching", nav: "Currently researching" },
+    { key: "reading", id: "current-reading", line: "Currently reading", nav: "Currently reading" },
+    { key: "question", id: "current-question", line: "Current question", nav: "Currently questioning" }
+  ];
+
+  var currentFilled = CURRENT_FACETS.filter(function (facet) {
+    return CURRENT[facet.key] && String(CURRENT[facet.key]).trim() !== "";
+  });
+
+  if (currentFilled.length) {
+    var rlLink = document.querySelector(
+      '.site-nav__list a[href$="reading-list.html"]'
+    );
+    var rlBase = rlLink ? rlLink.getAttribute("href") : "reading-list.html";
+
+    // 1) the "Current" dropdown, added to the nav on every page
+    var navList = document.querySelector(".site-nav__list");
+    if (navList && rlLink) {
+      var currentLi = document.createElement("li");
+      currentLi.className = "nav-current";
+      var menuHtml = currentFilled
+        .map(function (facet) {
+          return (
+            '<li><a href="' + rlBase + "#" + facet.id + '">' + facet.nav + "</a></li>"
+          );
+        })
+        .join("");
+      currentLi.innerHTML =
+        '<button class="nav-current__toggle" type="button" aria-expanded="false" aria-haspopup="true">' +
+        'Current<span class="nav-current__caret" aria-hidden="true"></span>' +
+        "</button>" +
+        '<ul class="nav-current__menu">' + menuHtml + "</ul>";
+      rlLink.closest("li").insertAdjacentElement("afterend", currentLi);
+
+      var currentToggle = currentLi.querySelector(".nav-current__toggle");
+      var closeCurrent = function () {
+        currentLi.classList.remove("is-open");
+        currentToggle.setAttribute("aria-expanded", "false");
+      };
+      currentToggle.addEventListener("click", function (event) {
+        event.stopPropagation();
+        var open = currentLi.classList.toggle("is-open");
+        currentToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      currentLi
+        .querySelector(".nav-current__menu")
+        .addEventListener("click", closeCurrent);
+      document.addEventListener("click", function (event) {
+        if (!currentLi.contains(event.target)) closeCurrent();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeCurrent();
+      });
+    }
+
+    // 2) the "Currently learning" block at the top of the Reading List page
+    var currentBlock = document.getElementById("currently-learning");
+    if (currentBlock) {
+      var rowsHtml = currentFilled
+        .map(function (facet) {
+          return (
+            '<div class="current-item" id="' + facet.id + '">' +
+            '<p class="current-item__label">' + facet.line + "</p>" +
+            '<p class="current-item__text">' + escapeHtml(CURRENT[facet.key]) + "</p>" +
+            "</div>"
+          );
+        })
+        .join("");
+      currentBlock.innerHTML =
+        '<p class="eyebrow">Currently learning</p>' +
+        '<div class="current-grid">' + rowsHtml + "</div>";
+      currentBlock.hidden = false;
+
+      if (location.hash) {
+        var hashTarget = document.getElementById(location.hash.slice(1));
+        if (hashTarget) hashTarget.scrollIntoView();
+      }
+    }
   }
 
   /* ---------- Post list rendering ------------------------------------- */
