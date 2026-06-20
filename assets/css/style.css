@@ -916,6 +916,29 @@ main {
   margin: 0;
 }
 
+/* Jumping to a facet from the Current menu: clear the sticky header and
+   flash the line so it is obvious which one you landed on. */
+.current-item {
+  scroll-margin-top: 5.5rem;
+  border-radius: var(--radius);
+}
+
+.current-item:target {
+  animation: current-flash 2s ease-out;
+}
+
+@keyframes current-flash {
+  0%,
+  18% {
+    background-color: var(--accent-soft);
+    box-shadow: 0 0 0 0.55rem var(--accent-soft);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 0.55rem transparent;
+  }
+}
+
 /* ---------- Footer ---------------------------------------------------- */
 
 .site-footer {

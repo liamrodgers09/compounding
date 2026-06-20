@@ -189,9 +189,20 @@
         '<div class="current-grid">' + rowsHtml + "</div>";
       currentBlock.hidden = false;
 
-      if (location.hash) {
-        var hashTarget = document.getElementById(location.hash.slice(1));
-        if (hashTarget) hashTarget.scrollIntoView();
+      // Arriving from a Current menu link on another page: the target line is
+      // drawn by JS, so the browser's own jump can land at the top instead.
+      // Re-do the scroll ourselves, just below the sticky header.
+      if (location.hash && document.getElementById(location.hash.slice(1))) {
+        var landOnFacet = function () {
+          var el = document.getElementById(location.hash.slice(1));
+          if (!el) return;
+          var y = el.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo(0, y < 0 ? 0 : y);
+        };
+        requestAnimationFrame(function () {
+          requestAnimationFrame(landOnFacet);
+        });
+        window.addEventListener("load", landOnFacet);
       }
     }
   }
