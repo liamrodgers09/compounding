@@ -14,8 +14,10 @@
      and it appears in both places automatically, nothing else to change.
      ===================================================================== */
   var CURRENT = {
-    researching: "",
-    reading: "",
+    researching:
+      "How a managing partner at a financial planning firm builds and curates his clients' plans",
+    reading:
+      "The Stranger in the Woods: The Extraordinary Story of the Last True Hermit, by Michael Finkel",
     question:
       "Are the 100-hour weeks investment banking is known for actually worth it for the pay?"
   };
@@ -131,11 +133,14 @@
     if (navList && rlLink) {
       var currentLi = document.createElement("li");
       currentLi.className = "nav-current";
-      var menuHtml = currentFilled
+      // The menu always lists all three facets. A filled one links to its
+      // line on the Reading List; an empty one links to the section itself.
+      var menuHtml = CURRENT_FACETS
         .map(function (facet) {
-          return (
-            '<li><a href="' + rlBase + "#" + facet.id + '">' + facet.nav + "</a></li>"
-          );
+          var hasText =
+            CURRENT[facet.key] && String(CURRENT[facet.key]).trim() !== "";
+          var target = rlBase + "#" + (hasText ? facet.id : "currently-learning");
+          return '<li><a href="' + target + '">' + facet.nav + "</a></li>";
         })
         .join("");
       currentLi.innerHTML =
