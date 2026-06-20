@@ -18,8 +18,8 @@
       } catch (e) {}
     })();
   </script>
-  <title>Journal · Compounding</title>
-  <meta name="description" content="Every post, newest first. Each one is something I actually did or thought about while learning finance, not general advice." />
+  <title>Reading List · Compounding</title>
+  <meta name="description" content="Books I am reading on finance and investing, what each one actually argues, and the one thing from each that changed how I think." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="favicons/favicon.svg" type="image/svg+xml" />
@@ -61,8 +61,8 @@
       <nav class="site-nav" id="site-nav" aria-label="Primary">
         <ul class="site-nav__list">
           <li><a href="index.html">Home</a></li>
-          <li><a href="journal.html" class="is-active" aria-current="page">Journal</a></li>
-          <li><a href="reading-list.html">Reading List</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="reading-list.html" class="is-active" aria-current="page">Reading List</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -73,24 +73,66 @@
   <main id="main">
     <section class="page-head">
       <div class="container">
-        <p class="eyebrow">Journal</p>
-        <h1 class="page-head__title">Everything I have written down</h1>
+        <p class="eyebrow">Reading list</p>
+        <h1 class="page-head__title">What I am reading</h1>
         <p class="page-head__lead">
-          Newest first. Each post is something I actually did or thought about,
-          not general advice you could find anywhere else.
+          Books I am working through on finance and investing. For each one, what
+          it actually argues, and the one thing that changed how I think. Not
+          summaries for their own sake.
         </p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="card-list card-list--stack" id="all-posts">
-          <noscript>
-            <ul class="plainlist">
-              <li><a href="posts/what-a-bad-trade-taught-me.html">The trade I managed well and still lost</a></li>
-              <li><a href="posts/first-mock-financial-plan.html">What I actually learned building my first mock financial plan</a></li>
-            </ul>
-          </noscript>
+        <div class="book-list">
+          <article class="book">
+            <h2 class="book__title">A Random Walk Down Wall Street</h2>
+            <p class="book__meta">Burton Malkiel &middot; 2023 edition &middot; Read June 2026</p>
+            <div class="book__body">
+              <p>
+                Malkiel makes the case for efficient markets: the idea that a
+                stock's price already reflects the information available about
+                the company, so consistently picking winners or timing the
+                market is far harder than it looks. If the price already accounts
+                for what is known, then most of the effort spent trying to beat
+                the market is wasted.
+              </p>
+              <p>
+                From there he argues for low-cost index investing. Rather than
+                paying active managers who try to outperform, he shows that over
+                long stretches a simple, broad, low-fee index fund tends to beat
+                most actively managed strategies once costs are taken out.
+              </p>
+            </div>
+            <div class="book__takeaway">
+              <p class="book__takeaway-label">Biggest takeaway</p>
+              <p class="book__takeaway-text">[Liam to fill in with what actually changed in how I think, not a restatement of the book's thesis.]</p>
+            </div>
+          </article>
+
+          <article class="book">
+            <h2 class="book__title">The One-Page Financial Plan</h2>
+            <p class="book__meta">Carl Richards &middot; Read June 2026</p>
+            <div class="book__body">
+              <p>
+                Richards argues that most financial planning fails because it is
+                too complicated. The elaborate spreadsheets and long projections
+                look rigorous, but people rarely follow through on them, so in
+                the end they do not matter.
+              </p>
+              <p>
+                His fix is to strip a plan down to what actually matters to the
+                specific person: their real goals and the few decisions that move
+                them toward those goals. If it does not fit on one page, it is
+                probably more detail than anyone will use.
+              </p>
+            </div>
+            <div class="book__takeaway">
+              <p class="book__takeaway-label">Biggest takeaway</p>
+              <p class="book__takeaway-text">[Liam to fill in.]</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -111,7 +153,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/posts.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
