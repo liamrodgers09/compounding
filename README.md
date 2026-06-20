@@ -64,9 +64,8 @@ never edit those pages by hand.
   notes in brackets like `[Liam to fill in ...]`. Replace those with the real
   story before you publish, and remove the draft callout and the
   `draft: true` line in `posts.js`.
-- **LinkedIn URL.** Two files point at
-  `https://www.linkedin.com/in/your-profile/`: `about.html` and `contact.html`.
-  Swap in your real profile URL.
+- **LinkedIn URL.** Set to your profile in both `about.html` and
+  `contact.html`. Update both if it ever changes.
 - **Contact email.** Currently `rodgersliam66@gmail.com` in `contact.html`.
   Change it if you set up a different address.
 
