@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "Turning \"don't put all your eggs in one basket\" into actual math",
+    date: "2026-06-22",
+    url: "posts/turning-eggs-in-one-basket-into-math.html",
+    excerpt:
+      "I wanted the real math behind not putting all your eggs in one basket, so I built Markowitz's portfolio model myself with five years of market data. What the chart proved, and the bugs that taught me more than the math."
+  },
+  {
     title: "What trading and investing have each taught me",
     date: "2026-06-22",
     url: "posts/what-trading-and-investing-have-taught-me.html",

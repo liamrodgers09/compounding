@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>Turning "don't put all your eggs in one basket" into actual math · Compounding</title>
+  <meta name="description" content="I wanted to know the real math behind not putting all your eggs in one basket, so I built Harry Markowitz's 1952 portfolio model myself with five years of market data." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">Turning "don't put all your eggs in one basket" into actual math</h1>
+        <p class="post__byline">
+          <time datetime="2026-06-22">June 22, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>
+          Everyone has heard "don't put all your eggs in one basket." I wanted to
+          know what was actually behind that phrase, mathematically, not just as
+          advice. That curiosity led me to Harry Markowitz's 1952 paper on
+          portfolio theory, and the more I read into it, the more the complicated
+          math behind it pulled me in instead of pushing me away. I had never
+          built anything like this before, and I wanted to put my own version of
+          it together instead of just reading about it.
+        </p>
+        <p>
+          Before touching any code, I worked through the math with two made up
+          assets by hand. One had a 10% expected return with 20% volatility, the
+          other 6% with 10% volatility, and a correlation of just 0.3 between
+          them. Split your money evenly between them and the math says your risk
+          should land around 12.45%, not the 15% you would get if you just
+          averaged the two assets' volatility together. That gap, getting lower
+          risk for free without giving up any return, is the entire idea behind
+          the paper. Seeing that work out with a calculator before I ever wrote a
+          line of code made the rest of it feel a lot less abstract.
+        </p>
+        <p>
+          From there I built the real version using five years of actual market
+          data: SPY (an S&amp;P 500 index fund), AGG (a bond fund), GLD (a fund
+          that tracks gold), AAPL (Apple), and JPM (JPMorgan Chase), picked
+          specifically to span stocks, bonds, and gold instead of five things
+          that would all move together. I wrote the code to calculate each
+          asset's return and risk, built the full covariance matrix, and used an
+          optimizer to trace out the efficient frontier, the curve showing the
+          lowest possible risk for every level of return.
+        </p>
+        <p>
+          The moment that actually surprised me most was getting stopped by bugs I
+          never saw coming. I used Cursor as a coding assistant throughout this,
+          the same way you would lean on a tutor, but every fix still came down to
+          me actually understanding what broke and why, not just asking it to make
+          the error disappear. The first bug was quiet: the tool I used to pull
+          stock data reordered my five tickers alphabetically without telling me,
+          so even though all my calculations were correct, the chart ended up
+          labeling the wrong dots with the wrong stock names. I only caught it by
+          checking the chart against my own printed numbers and noticing they did
+          not match. The second bug stopped the whole script cold, it tried to
+          save the final chart to a folder that only existed on the computer the
+          original code was written on, not mine, so it crashed on the very last
+          line after doing everything else correctly. Both times the fix turned
+          out to be one line of code, but finding that line meant actually
+          understanding what every piece of the script was doing instead of just
+          running it and hoping. That is the part nobody mentions when they talk
+          about building something like this. The setbacks are not really about
+          the math, they are about learning to sit with something broken long
+          enough to find exactly where it broke.
+        </p>
+        <p>
+          Once it was working, the chart proved the entire point.
+        </p>
+
+        <img class="post__image" src="../images/markowitz-efficient-frontier.png" width="1350" height="900" alt="Markowitz efficient frontier chart for SPY, AGG, GLD, AAPL, and JPM" />
+
+        <p>
+          AGG sat at the bottom with the lowest risk and lowest return, AAPL
+          carried the highest risk of anything in the set without actually beating
+          JPM's return, and a portfolio split evenly across all five landed close
+          to the optimal curve but not quite on it. Diversification is not just a
+          saying. It is a real, provable reduction in risk that shows up the
+          moment you actually run the numbers.
+        </p>
+        <p>
+          If I am being honest, this looked intimidating before I started,
+          complicated math, real code, a model that won a Nobel Prize. My advice
+          to anyone who feels that way about something is to dive in headfirst
+          anyway and actually give it real time instead of looking at it once and
+          deciding it is too complicated. It was not as hard as it looked. It just
+          took sitting with it long enough to actually understand it instead of
+          giving up at the first wall.
+        </p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

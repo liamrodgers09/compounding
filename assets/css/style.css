@@ -644,6 +644,14 @@ main {
   color: var(--ink);
 }
 
+.post__image {
+  width: 100%;
+  height: auto;
+  margin: 2.2rem 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
 .post__intro {
   color: var(--ink-soft);
 }
