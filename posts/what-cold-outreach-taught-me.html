@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>What cold outreach actually taught me · Compounding</title>
+  <meta name="description" content="I spent part of June cold emailing finance professionals around Charleston. What the silence taught me, what made the few replies land, and why one yes was enough." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">What cold outreach actually taught me</h1>
+        <p class="post__byline">
+          <time datetime="2026-06-21">June 21, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>
+          I spent part of June cold emailing finance professionals around
+          Charleston. People I had never met, asking if they would be willing to
+          talk to a high school student about how they got into the industry and
+          what they actually do day to day. I wanted real exposure to the field,
+          and I figured the fastest way to get it was to ask for it directly
+          instead of waiting for it to show up.
+        </p>
+        <p>
+          Most of them never replied. That part stung at first. You research the
+          person, write something, proofread it, hit send, and then nothing comes
+          back. The honest lesson is that the silence is not personal. These are
+          busy people, a cold email from a teenager is easy to skip, and no
+          response is the default, not a verdict on you.
+        </p>
+        <p>
+          The replies I did get had a pattern. The emails that landed were the
+          ones where I had clearly done my homework on the person, mentioned
+          something specific about their firm or their path instead of sending an
+          obvious template, and asked for something small and easy to say yes to,
+          like fifteen minutes of their time rather than ongoing mentorship.
+          Specific and low effort to answer beat polished but generic every
+          single time.
+        </p>
+        <p>
+          I also learned not to treat the first email as the whole attempt. A
+          short, polite follow-up about a week later pulled responses that the
+          first email never did. Not nagging, just a reminder, because the first
+          message usually just got buried under everything else in their inbox.
+        </p>
+        <p>
+          One of those conversations turned into a coffee chat with a managing
+          partner at a sector-focused private equity firm. One yes out of a lot
+          of sends. That ratio sounds rough until you remember that I only needed
+          one for the whole thing to be worth it.
+        </p>
+        <p>
+          My biggest takeaway is that cold outreach is a numbers game with a
+          craft layer sitting on top of it. The volume matters, but so does
+          treating each person like a person instead of a name on a list. The
+          rejection, or more often the silence, is just the cost of doing it at
+          all. I would rather send a stack of emails and get a few real
+          conversations out of it than sit around waiting for opportunities to
+          find me, because they will not.
+        </p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

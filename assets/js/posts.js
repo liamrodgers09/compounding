@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "What cold outreach actually taught me",
+    date: "2026-06-21",
+    url: "posts/what-cold-outreach-taught-me.html",
+    excerpt:
+      "I spent part of June cold emailing finance professionals around Charleston. What the silence taught me, what made the few replies land, and why one yes was enough."
+  },
+  {
     title: "The trade I managed well and still lost",
     date: "2026-06-20",
     url: "posts/what-a-bad-trade-taught-me.html",
