@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "What trading and investing have each taught me",
+    date: "2026-06-22",
+    url: "posts/what-trading-and-investing-have-taught-me.html",
+    excerpt:
+      "I trade NQ futures and hold index funds at the same time. How the two pull on the same instinct, where they actually differ, and which type of money belongs in each."
+  },
+  {
     title: "The career I almost wrote off",
     date: "2026-06-22",
     url: "posts/the-career-i-almost-wrote-off.html",
