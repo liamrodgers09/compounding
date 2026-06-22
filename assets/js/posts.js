@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "The career I almost wrote off",
+    date: "2026-06-22",
+    url: "posts/the-career-i-almost-wrote-off.html",
+    excerpt:
+      "A bored eighth grader's Google search turned into a real interest in investment banking and M&A. How that happened, and where I honestly stand on it now."
+  },
+  {
     title: "What cold outreach actually taught me",
     date: "2026-06-21",
     url: "posts/what-cold-outreach-taught-me.html",
