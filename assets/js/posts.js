@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "An Autopsy of a Losing Book: What My Gold Trades Taught Me",
+    date: "2026-06-22",
+    url: "posts/an-autopsy-of-a-losing-book.html",
+    excerpt:
+      "A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data."
+  },
+  {
     title: "Turning \"don't put all your eggs in one basket\" into actual math",
     date: "2026-06-22",
     url: "posts/turning-eggs-in-one-basket-into-math.html",

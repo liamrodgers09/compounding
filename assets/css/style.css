@@ -652,6 +652,22 @@ main {
   border-radius: var(--radius);
 }
 
+.post__figure {
+  margin: 2.2rem 0;
+}
+
+.post__figure .post__image {
+  margin: 0;
+}
+
+.post__caption {
+  margin-top: 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
 .post__intro {
   color: var(--ink-soft);
 }

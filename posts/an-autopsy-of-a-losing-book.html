@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>An Autopsy of a Losing Book: What My Gold Trades Taught Me · Compounding</title>
+  <meta name="description" content="A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">An Autopsy of a Losing Book: What My Gold Trades Taught Me</h1>
+        <p class="post__byline">
+          <time datetime="2026-06-22">June 22, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>
+          Most trading content celebrates winners. This is not that.
+        </p>
+        <p>
+          Over the past seven months I ran a paper-trading account, and when I
+          finally sat down to audit it rather than trade it, the verdict was
+          unambiguous. I had been losing, and gold was the worst of it. What
+          surprised me was not the loss. It was the reason behind it, which I
+          never would have found by trusting my instincts.
+        </p>
+        <p>
+          One note on context, because intellectual honesty is the whole point of
+          this exercise: every figure below comes from a simulated account, not
+          real capital. The dollar amounts are notional. What they measure,
+          however, is entirely real, namely my decisions, my discipline, and the
+          quality of my process.
+        </p>
+        <p>
+          I scaled back my trading a while ago, and the reason was a feeling. The
+          whole endeavor had begun to resemble gambling more than investing. I was
+          taking positions across nearly a dozen instruments, gold, crude oil,
+          Nasdaq futures, silver, Bitcoin, and a handful of equities, with
+          inconsistent sizing and no genuine thesis behind most of them. Stepping
+          back felt correct, but a feeling is not evidence. So I did what I should
+          have done at the outset: I interrogated the data. I exported my complete
+          order history and wrote a Python tool to reconstruct every completed
+          trade, pairing each entry with its exit and converting raw fills into
+          profit and loss. Then I isolated the instrument I traded most, gold, and
+          put it under a microscope.
+        </p>
+        <p>
+          The headline figures were sobering. Across 13 completed gold trades, I
+          finished down roughly $500. My win rate was 31%. My profit factor, the
+          ratio of gross profits to gross losses, came to 0.65, which means I lost
+          about a dollar and a half for every dollar I earned. My expectancy was
+          negative $38 per trade. Stated plainly, the average gold trade I placed
+          was a money-losing decision. A negative-expectancy strategy is not a
+          strategy. It is a leak.
+        </p>
+        <p>
+          But the audit justified itself the moment I broke the losses down,
+          because they were not random noise. They were concentrated almost
+          entirely on one side of the market. Every time I went long gold, I lost.
+          Not most of the time. Every time. Six long positions, zero winners, a
+          combined loss of roughly $1,275. My short positions, by contrast, were
+          actually profitable: seven trades, a 57% win rate, and a net gain near
+          $775. The entirety of my gold loss traced back to a single repeated
+          error, buying an instrument I evidently could not read from the long
+          side.
+        </p>
+
+        <figure class="post__figure">
+          <img class="post__image" src="../images/gold-trading-analysis.png" width="1950" height="1200" alt="Dashboard of my gold trading performance: equity curve, profit and loss per trade, long versus short results, and average win versus average loss" />
+          <figcaption class="post__caption">My gold trades, reconstructed and analyzed in Python. The long versus short panel is the whole story.</figcaption>
+        </figure>
+
+        <p>
+          I want to be disciplined about this claim. Six trades is a small sample,
+          and I will not pretend that "zero percent on longs" is an immutable law
+          rather than a strong signal carrying some element of bad luck. But going
+          zero for six, with my single largest loss of the entire set being a long
+          position, is not a result you wave away as variance. It is a blind spot.
+          And it was completely invisible to me in real time, because in the
+          moment, each long felt justified.
+        </p>
+        <p>
+          The real lesson was not simply that I trade gold poorly, though that is a
+          fair reading. It concerned the distance between intuition and evidence.
+          While I was placing those trades, my instinct registered only that
+          something felt wrong. It could not tell me what. It took a few hundred
+          lines of Python and a willingness to confront my own record to surface a
+          pattern that, in hindsight, was glaring. That distance, between what I
+          sensed and what was actually occurring, is the difference between
+          operating on conviction and operating on data. Every serious market
+          participant, from a discretionary trader to a quantitative fund, lives on
+          the data side of that line. I had been on the other one.
+        </p>
+        <p>
+          Three principles emerged that I intend to carry forward. First,
+          attribution matters more than the bottom line. A net result tells you
+          whether you won or lost. An honest breakdown tells you why, and the why
+          is the only part you can actually act on. Second, sample size is not
+          optional. Distributing a handful of trades across ten instruments
+          guarantees you can never learn anything statistically meaningful about
+          any one of them. Depth beats breadth. Third, recognizing when to step
+          away is itself a skill. I was fortunate to learn it on a simulated
+          account at sixteen, rather than with real capital a decade from now.
+        </p>
+        <p>
+          I am not presenting a winning system, because I did not have one. I am
+          presenting the process of discovering that, and that process, sitting
+          with my own losing record and refusing to look away, taught me more about
+          how markets actually function than any profitable trade ever did. The
+          objective was never to prove I could trade. It was to learn to reason
+          rigorously about risk, evidence, and my own decisions. Measured against
+          that goal, the losing book may be the most useful thing I have produced.
+        </p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
