@@ -1076,6 +1076,182 @@ body,
   --shadow-md: 0 16px 36px rgba(0, 0, 0, 0.55);
 }
 
+/* =========================================================================
+   Visual polish & motion
+   Extends the system above; does not change the palette or layout. Every
+   entrance/scroll effect is gated behind (prefers-reduced-motion:
+   no-preference), with the reduced-motion block at the very end as the final
+   safety net. Motion animates opacity and transform only. main.js adds the
+   .reveal / .is-visible hooks and the brief .theme-anim flag on toggle.
+   ========================================================================= */
+
+/* ----- Typography: nicer line breaking where supported ----------------- */
+.hero__title,
+.page-head__title,
+.post__title,
+.card__title,
+.book__title,
+.section__title {
+  text-wrap: balance;
+}
+
+.hero__lead,
+.hero__sub,
+.page-head__lead,
+.post__body p,
+.prose p,
+.book__body p {
+  text-wrap: pretty;
+}
+
+/* Crisp, aligned numerals in dates and labels */
+.card__meta time,
+.post__byline time,
+.book__meta,
+.current-item__label {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----- Reading rhythm in posts ----------------------------------------- */
+.post__body p {
+  margin-bottom: 1.35em;
+}
+
+.post__header {
+  margin-bottom: 2.4rem;
+}
+
+/* ----- Links: animated underline on UI links, color ease on prose ------ */
+a {
+  transition: color 0.18s ease;
+}
+
+/* Nav + footer links: underline grows from the left on hover (transform) */
+.site-nav__list a:not(.is-active)::after,
+.site-footer__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.1rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.site-footer__nav a {
+  position: relative;
+}
+
+.site-nav__list a:not(.is-active):hover::after,
+.site-footer__nav a:hover::after {
+  transform: scaleX(1);
+}
+
+/* In-content links keep their underline and ease to the accent on hover */
+.prose a,
+.post__body a,
+.post__intro a,
+.page-head__lead a {
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.prose a:hover,
+.post__body a:hover,
+.post__intro a:hover,
+.page-head__lead a:hover {
+  color: var(--accent);
+}
+
+/* ----- Cards & surfaces: a touch more lift, smoothly eased ------------- */
+.card,
+.contact-item {
+  transition: border-color 0.2s ease,
+    transform 0.2s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* ----- Header brand: subtle entrance + hover --------------------------- */
+.brand__mark {
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.brand:hover .brand__mark {
+  transform: scale(1.07);
+}
+
+/* ----- Smooth light/dark toggle (flag added briefly by main.js) -------- */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    color 0.3s ease, fill 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ----- Entrance + scroll-reveal (opacity & transform only) ------------- */
+@media (prefers-reduced-motion: no-preference) {
+  main {
+    animation: page-enter 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .brand {
+    animation: brand-enter 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* Hidden until revealed. The class is only added by JS, so no-JS and
+     reduced-motion visitors always see content normally. */
+  .reveal {
+    opacity: 0;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    animation: reveal-rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes brand-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---------- Responsive ------------------------------------------------ */
 
 @media (max-width: 640px) {

@@ -28,6 +28,22 @@
   var root = document.documentElement;
   var themeButton = null;
 
+  var prefersReducedMotion =
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Briefly enable a global color transition so the light/dark switch
+  // cross-fades instead of snapping. Skipped when reduced motion is on.
+  var themeAnimTimer = null;
+  function smoothThemeChange() {
+    if (prefersReducedMotion) return;
+    root.classList.add("theme-anim");
+    if (themeAnimTimer) clearTimeout(themeAnimTimer);
+    themeAnimTimer = setTimeout(function () {
+      root.classList.remove("theme-anim");
+    }, 360);
+  }
+
   function currentTheme() {
     return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
   }
@@ -75,6 +91,7 @@
 
     applyTheme(currentTheme(), false); // sync the button to the active theme
     themeButton.addEventListener("click", function () {
+      smoothThemeChange();
       applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
     });
   }
@@ -85,6 +102,7 @@
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", function (event) {
         if (!localStorage.getItem("theme")) {
+          smoothThemeChange();
           applyTheme(event.matches ? "dark" : "light", false);
         }
       });
@@ -217,4 +235,53 @@
 
   render("recent-posts", 3); // home page, three most recent
   render("all-posts", 0);    // journal page, everything
+
+  /* ---------- Motion: scroll-reveal with a subtle stagger ------------- */
+  // Sections, cards, and images fade and rise as they enter the viewport.
+  // Progressive enhancement: without JS (or with reduced motion) nothing is
+  // hidden, so all content shows normally. We only toggle opacity/transform,
+  // and each element is unobserved once revealed.
+  if (!prefersReducedMotion && "IntersectionObserver" in window) {
+    var revealEls = Array.prototype.slice
+      .call(
+        document.querySelectorAll(
+          ".section__head, .card, .post__figure, .post__image, .book, .contact-item, #current-list .current-item, .prose"
+        )
+      )
+      .filter(function (el) {
+        // an image already inside a revealing figure shouldn't double up
+        return !(
+          el.classList.contains("post__image") && el.closest(".post__figure")
+        );
+      });
+
+    revealEls.forEach(function (el) {
+      el.classList.add("reveal");
+      // stagger items that share a parent (e.g. cards within a list)
+      var prev = el.previousElementSibling;
+      var i = 0;
+      while (prev) {
+        if (prev.classList && prev.classList.contains("reveal")) i++;
+        prev = prev.previousElementSibling;
+      }
+      var delay = Math.min(i, 6) * 65;
+      if (delay) el.style.animationDelay = delay + "ms";
+    });
+
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    revealEls.forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  }
 })();
