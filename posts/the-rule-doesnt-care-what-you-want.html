@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>The Rule Doesn't Care What You Want: Backtesting Crude Oil · Compounding</title>
+  <meta name="description" content="A backtest of the golden cross moving-average rule on eighteen years of real crude oil futures data, built in Python, and an honest look at why removing judgment from a trade doesn't automatically produce a better outcome." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">The Rule Doesn't Care What You Want: Backtesting Crude Oil</h1>
+        <p class="post__byline">
+          <time datetime="2026-06-23">June 23, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>
+          Earlier today I wrote about discovering, through code rather than
+          instinct, that I had been losing money trading gold. The natural next
+          question followed almost immediately. If removing my own judgment from
+          the equation entirely, replacing it with a fixed, mechanical rule, would
+          that actually fix the problem, or just relocate it?
+        </p>
+        <p>
+          I tested that question on crude oil, the instrument I have actually
+          traded with real positions, rather than picking something unfamiliar for
+          the sake of a clean example.
+        </p>
+        <p>
+          The rule I tested is a classic one: the golden cross. Using eighteen
+          years of real daily WTI crude futures prices, I calculated a 50-day
+          moving average and a 200-day moving average. The rule is simple and
+          entirely mechanical. Hold the position only when the 50-day average sits
+          above the 200-day average. Sit in cash otherwise. No discretion, no gut
+          calls, nothing left to feel.
+        </p>
+        <p>
+          My hypothesis was straightforward. A disciplined, rule-based system that
+          systematically avoids the worst stretches should outperform the simplest
+          possible alternative: buying once and holding regardless of what happens
+          next.
+        </p>
+        <p>
+          It did not. Over the period tested, the mechanical strategy lost
+          approximately 23 percent. Simply buying and holding lost only about 1
+          percent. The rule did not merely fail to help. It actively performed
+          worse than doing nothing at all.
+        </p>
+
+        <figure class="post__figure">
+          <img class="post__image" src="../images/crude-oil-price-vs-moving-averages.png" width="988" height="451" alt="Chart of crude oil price against its 50-day and 200-day moving averages, 2008 to present" />
+          <figcaption class="post__caption">Crude oil price against its 50-day and 200-day moving averages. The tangled, repeatedly crossing stretch from roughly 2012 to 2014 is the sideways period that hurt the strategy most.</figcaption>
+        </figure>
+
+        <p>
+          The reason traces back to a property called lag. A moving average is, by
+          definition, calculated from price that has already happened, which means
+          it always reacts to a move after the fact rather than in anticipation of
+          it. In a market moving cleanly in one direction, that delay barely
+          matters, since the strategy still captures most of the trend even
+          entering a little late. The damage appears in a different kind of market
+          entirely, one that drifts without committing to a direction. Price rises
+          just enough to flip the signal long, then eases back down just enough to
+          flip it back to flat, and the rule ends up trading the noise rather than
+          the trend. That pattern has a name: whipsaw.
+        </p>
+        <p>
+          Looking at the chart above, this is exactly what happened to crude oil
+          between roughly 2012 and 2014. My first instinct was to call that period
+          chaotic, but the actual data does not support that word. Daily price
+          swings during that stretch were unremarkable by historical standards.
+          What characterized the period was not volatility but direction, or
+          rather, the absence of one. Oil drifted between roughly eighty and one
+          hundred ten dollars a barrel for an extended stretch without committing
+          to a sustained trend in either direction. A sideways market, not a
+          chaotic one, and the distinction matters, because it identifies the
+          actual condition that breaks this style of strategy.
+        </p>
+        <p>
+          One honest limitation is worth stating plainly. The specific window I
+          tested, fifty days against two hundred, is a single choice among many
+          reasonable ones. A different pairing might tell a different story over
+          the same period. I am deliberately not testing every combination until
+          one looks better, since adjusting parameters after seeing a
+          disappointing result is a well-known way to quietly deceive yourself in
+          this kind of work. The honest version of this study is the one that
+          reports what a single, sensible rule actually did, not the one that was
+          tuned until it agreed with what I wanted to find.
+        </p>
+        <p>
+          The conclusion I am left with is less satisfying than I expected going
+          in, and more useful for exactly that reason. Removing judgment from a
+          trade does not automatically produce a better outcome. A rule is only as
+          good as its fit to the market it is asked to operate in, and the market
+          is under no obligation to cooperate with whatever rule you happened to
+          choose.
+        </p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

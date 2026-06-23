@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "The Rule Doesn't Care What You Want: Backtesting Crude Oil",
+    date: "2026-06-23",
+    url: "posts/the-rule-doesnt-care-what-you-want.html",
+    excerpt:
+      "I backtested the golden cross moving-average rule on eighteen years of real crude oil futures in Python. It lost to simply buying and holding. An honest look at why removing judgment did not produce a better outcome."
+  },
+  {
     title: "An Autopsy of a Losing Book: What My Gold Trades Taught Me",
     date: "2026-06-22",
     url: "posts/an-autopsy-of-a-losing-book.html",
