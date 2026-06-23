@@ -306,14 +306,36 @@
       hero.querySelector(".hero__actions")
     ].filter(Boolean);
 
-    // Prime the arc to its hidden state BEFORE the cinematic transition is
-    // active, so it does not animate while being hidden. A single dash the
-    // length of the path, offset by that length, hides the whole stroke.
-    var pathLen = 0;
+    // Returns the arc (line + dot) to its natural, fully-drawn, fully-visible
+    // state by dropping the inline dash styles. This is the guaranteed-visible
+    // end state. JS is used ONLY to animate the arc, never to make it visible:
+    // the default (no dash) is already fully drawn, so if anything below fails
+    // the arc still shows.
+    var settleArcVisible = function () {
+      if (curvePath) {
+        curvePath.style.strokeDasharray = "";
+        curvePath.style.strokeDashoffset = "";
+      }
+      if (curveDot) curveDot.style.opacity = "1";
+    };
+
+    // Measure the path. If we cannot, we simply never hide it (it stays in its
+    // visible default and only the content stagger plays).
+    var arcLen = 0;
     if (curvePath && typeof curvePath.getTotalLength === "function") {
-      pathLen = curvePath.getTotalLength();
-      curvePath.style.strokeDasharray = pathLen;
-      curvePath.style.strokeDashoffset = pathLen;
+      try {
+        arcLen = curvePath.getTotalLength();
+      } catch (e) {
+        arcLen = 0;
+      }
+    }
+    var animateArc = !!(curvePath && arcLen > 0);
+
+    // Hide the arc BEFORE the transition is armed, so it hides instantly
+    // instead of animating itself away.
+    if (animateArc) {
+      curvePath.style.strokeDasharray = arcLen;
+      curvePath.style.strokeDashoffset = arcLen;
     }
 
     // Arm the cinematic styles: arc transition on, hero content hidden.
@@ -325,11 +347,27 @@
     // Flush styles so the primed/hidden state is the transition's start point.
     void hero.getBoundingClientRect();
 
-    // Draw the line in, and fade the end dot in (its CSS delay lands it as the
-    // stroke arrives). Then build the content in a short, deliberate stagger
-    // that overlaps the tail of the draw.
-    if (curvePath && pathLen) curvePath.style.strokeDashoffset = "0";
-    if (curveDot) curveDot.style.opacity = "1";
+    // FAIL-SAFE: no matter what happens with the transition (it never fires,
+    // the tab was backgrounded, an exception is thrown), the arc is guaranteed
+    // fully visible shortly after load. Scheduled before the draw starts so it
+    // always runs.
+    var arcSafety = setTimeout(settleArcVisible, 2600);
+
+    // Draw the line in. When it finishes, settle to the clean default state.
+    if (animateArc) {
+      curvePath.addEventListener(
+        "transitionend",
+        function (e) {
+          if (e.propertyName === "stroke-dashoffset") {
+            clearTimeout(arcSafety);
+            settleArcVisible();
+          }
+        },
+        { once: true }
+      );
+      curvePath.style.strokeDashoffset = "0";
+    }
+    if (curveDot) curveDot.style.opacity = "1"; // dot fades in (CSS delay)
 
     var startAt = 1000; // begin partway through the ~1.7s line draw
     var step = 140; // stagger between elements
