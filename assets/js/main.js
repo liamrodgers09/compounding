@@ -284,4 +284,59 @@
       revealObserver.observe(el);
     });
   }
+
+  /* ---------- Homepage hero: cinematic opener ------------------------- */
+  // Runs only on the homepage (the .hero exists nowhere else) and only with
+  // motion enabled. The arc draws itself in like a pen stroke, then the hero
+  // content builds in a short stagger, overlapping the tail of the draw.
+  // Progressive enhancement: no JS or reduced motion shows the final state.
+  var hero = document.querySelector(".hero");
+  if (hero && !prefersReducedMotion) {
+    var curvePath = hero.querySelector(".hero__curve path");
+    var curveDot = hero.querySelector(".hero__curve circle");
+
+    // Deliberate build order, independent of DOM order: label, byline,
+    // headline, paragraph, second paragraph, buttons.
+    var heroSeq = [
+      hero.querySelector(".eyebrow"),
+      hero.querySelector(".card__meta"),
+      hero.querySelector(".hero__title"),
+      hero.querySelector(".hero__lead"),
+      hero.querySelector(".hero__sub"),
+      hero.querySelector(".hero__actions")
+    ].filter(Boolean);
+
+    // Prime the arc to its hidden state BEFORE the cinematic transition is
+    // active, so it does not animate while being hidden. A single dash the
+    // length of the path, offset by that length, hides the whole stroke.
+    var pathLen = 0;
+    if (curvePath && typeof curvePath.getTotalLength === "function") {
+      pathLen = curvePath.getTotalLength();
+      curvePath.style.strokeDasharray = pathLen;
+      curvePath.style.strokeDashoffset = pathLen;
+    }
+
+    // Arm the cinematic styles: arc transition on, hero content hidden.
+    heroSeq.forEach(function (el) {
+      el.classList.add("hero__seq");
+    });
+    hero.classList.add("cinematic");
+
+    // Flush styles so the primed/hidden state is the transition's start point.
+    void hero.getBoundingClientRect();
+
+    // Draw the line in, and fade the end dot in (its CSS delay lands it as the
+    // stroke arrives). Then build the content in a short, deliberate stagger
+    // that overlaps the tail of the draw.
+    if (curvePath && pathLen) curvePath.style.strokeDashoffset = "0";
+    if (curveDot) curveDot.style.opacity = "1";
+
+    var startAt = 1000; // begin partway through the ~1.7s line draw
+    var step = 140; // stagger between elements
+    heroSeq.forEach(function (el, i) {
+      setTimeout(function () {
+        el.classList.add("is-in");
+      }, startAt + i * step);
+    });
+  }
 })();

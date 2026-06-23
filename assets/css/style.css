@@ -1252,6 +1252,38 @@ html.theme-anim *::after {
   }
 }
 
+/* ----- Homepage hero: cinematic opener -------------------------------- */
+/* Scoped to .hero.cinematic, a class main.js adds only on the homepage and
+   only when motion is allowed. The .hero element exists on no other page, so
+   these rules are inert everywhere else. Hidden states apply only after the
+   class is added, so no-JS and reduced-motion visitors see the final state. */
+@media (prefers-reduced-motion: no-preference) {
+  /* The arc draws itself in; JS sets the dash length and flips the offset. */
+  .hero.cinematic .hero__curve path {
+    transition: stroke-dashoffset 1.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  /* The dot at the end of the arc fades in as the stroke reaches it. */
+  .hero.cinematic .hero__curve circle {
+    opacity: 0;
+    transition: opacity 0.35s ease 1.45s;
+  }
+
+  /* Hero content builds in as a stagger; JS adds .is-in per element on a
+     timeline. Movement is small and uses transform/opacity only. */
+  .hero.cinematic .hero__seq {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .hero.cinematic .hero__seq.is-in {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}
+
 /* ---------- Responsive ------------------------------------------------ */
 
 @media (max-width: 640px) {
