@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "How I'd Run My Own Firm",
+    date: "2026-06-26",
+    url: "posts/how-id-run-my-own-firm.html",
+    excerpt:
+      "The investment methodology I'd actually run, built from three distinctions about how the industry works and two tools I coded myself. Honest about what I can and can't yet claim."
+  },
+  {
     title: "The Rule Doesn't Care What You Want: Backtesting Crude Oil",
     date: "2026-06-23",
     url: "posts/the-rule-doesnt-care-what-you-want.html",
