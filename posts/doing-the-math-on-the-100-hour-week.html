@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>Doing the Math on the 100-Hour Week · Compounding</title>
+  <meta name="description" content="I said the notorious hours did not scare me, so I checked what I was actually claiming. What first-year bankers really work, what it really pays per hour, and the question I should have asked instead." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://compoundingwithliam.com/posts/doing-the-math-on-the-100-hour-week.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Compounding" />
+  <meta property="og:url" content="https://compoundingwithliam.com/posts/doing-the-math-on-the-100-hour-week.html" />
+  <meta property="og:title" content="Doing the Math on the 100-Hour Week" />
+  <meta property="og:description" content="I said the notorious hours did not scare me, so I checked what I was actually claiming. What first-year bankers really work, what it really pays per hour, and the question I should have asked instead." />
+  <meta name="twitter:title" content="Doing the Math on the 100-Hour Week" />
+  <meta name="twitter:description" content="I said the notorious hours did not scare me, so I checked what I was actually claiming. What first-year bankers really work, what it really pays per hour, and the question I should have asked instead." />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">Doing the Math on the 100-Hour Week</h1>
+        <p class="post__byline">
+          <time datetime="2026-07-04">July 4, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>
+          Two weeks ago, in the post about how I found this career, I wrote a
+          sentence that has been quietly bothering me since: "The hours are
+          notorious, and that does not scare me off the way it probably should,
+          because relentless is already the word I would use for myself."
+        </p>
+        <p>
+          I wrote that without ever checking what the hours actually are, or what
+          they actually pay. My Current page has been asking the question for
+          weeks: are the 100-hour weeks investment banking is known for actually
+          worth it for the pay? I finally sat down and did the math, and parts of
+          the answer surprised me.
+        </p>
+
+        <h2>What the hours actually are</h2>
+        <p>
+          The 100-hour week is real, but it is not the average week. From
+          everything I can find, a normal stretch runs 60 to 80 hours, live deals
+          push past 100, and the honest full-year median lands somewhere around
+          80 to 85. The leaner elite boutiques reportedly run closer to 80 to 90
+          as the baseline. Most banks now have some version of a protected
+          Saturday policy, and most accounts agree it holds right up until a live
+          deal decides it does not.
+        </p>
+        <p>
+          Call it 80 hours to be fair. That is two full-time jobs, stacked.
+        </p>
+
+        <h2>The 13 analysts</h2>
+        <p>
+          The most famous piece of evidence in this debate is a survey that 13
+          first-year Goldman Sachs analysts put together in 2021, formatted, in
+          what might be the most investment banking move of all time, as a pitch
+          deck. They reported averaging close to 100 hours a week over a six-week
+          stretch, sleeping five hours a night, and watching their self-rated
+          mental and physical health fall by more than six points on a ten-point
+          scale since starting the job. Their big ask was a cap at 80 hours.
+        </p>
+        <p>
+          Here is where I have to apply my own rules. That survey is 13 people.
+          My gold post-mortem was 13 trades, and I spent a whole post explaining
+          why you cannot treat 13 data points as a law of nature. Same discipline
+          applies here: 13 self-selected analysts during one of the busiest deal
+          booms in history is a strong signal about the worst stretches, not a
+          census of the job. I believe the signal. I am just not going to pretend
+          it is more than it is.
+        </p>
+
+        <h2>The math</h2>
+        <p>
+          First-year analysts at the big banks currently earn roughly $170,000 to
+          $190,000 all-in. That is a headline number that turns heads at any age,
+          and it is the number everyone quotes when they call banking the best
+          paying job out of school.
+        </p>
+        <p>
+          Then you divide.
+        </p>
+        <p>
+          At 80 hours a week for 50 weeks, $180,000 comes out to about $45 an
+          hour. In the 100-hour stretches it falls closer to $36. A first-year
+          consultant at McKinsey, BCG, or Bain earns less on paper, around
+          $130,000 to $170,000, but works closer to 60 hours, which lands at
+          roughly $50 an hour. A new-grad software engineer at a big tech company
+          makes somewhere between $140,000 and $200,000 working about 43 hours a
+          week. That is $65 to $95 an hour.
+        </p>
+        <p>
+          Per hour, the famous paycheck is not a premium at all. Banking pays
+          less than tech and about the same as consulting. There is no overtime.
+          The extra money is not the job paying you more. It is the job taking
+          more of you.
+        </p>
+
+        <h2>What the paycheck is actually for</h2>
+        <p>
+          So if the wage argument is dead, why does anyone rational take the job?
+          Because year one is not the product. More than 90 percent of private
+          equity analyst hires come straight out of banking analyst programs, and
+          that recruiting can start as early as six months into the job. The two
+          years are a credential and a training program: modeling, deal process,
+          and pressure tolerance, compressed at a density nothing else out of
+          undergrad matches. The pay for year one is not $180,000. It is the door
+          that years three through five walk through.
+        </p>
+        <p>
+          Which means the question I put on my Current page was the wrong
+          question. "Worth it for the pay" has a clear answer, and the answer is
+          no. The real question is whether it is worth it for the destination,
+          and that one only has a personal answer.
+        </p>
+
+        <h2>Where that leaves me</h2>
+        <p>
+          Nothing in this research changed what I want. But it changed what I am
+          allowed to claim. I wrote that the hours do not scare me because I am
+          relentless, and I stand by wanting to find out. What I cannot do
+          anymore is pretend the trade is money for effort, because the math says
+          that trade is bad and anyone taking it for the wage alone is getting
+          played. The only honest reasons left are wanting the work itself and
+          wanting what it unlocks, and those happen to be my reasons.
+        </p>
+        <p>
+          I am sixteen and the hardest week I have worked would not impress a
+          single analyst. So I will not claim the hours cannot break me. I will
+          claim that I now know exactly what I would be signing up for, priced
+          per hour, with the discount stated plainly. That sentence from two
+          weeks ago survives, but barely, and only after an audit. Around here,
+          that counts as passing.
+        </p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "Doing the Math on the 100-Hour Week",
+    date: "2026-07-04",
+    url: "posts/doing-the-math-on-the-100-hour-week.html",
+    excerpt:
+      "I said the notorious hours did not scare me, so I checked what I was actually claiming. What first-year bankers really work, what it really pays per hour, and the question I should have asked instead."
+  },
+  {
     title: "How I'd Run My Own Firm",
     date: "2026-06-26",
     url: "posts/how-id-run-my-own-firm.html",

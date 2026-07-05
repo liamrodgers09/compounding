@@ -18,8 +18,9 @@
       "How a managing partner at a financial planning firm builds and curates his clients' plans",
     reading:
       "The Stranger in the Woods: The Extraordinary Story of the Last True Hermit, by Michael Finkel",
-    question:
-      "Are the 100-hour weeks investment banking is known for actually worth it for the pay?"
+    // Answered in the July 4, 2026 post "Doing the Math on the 100-Hour Week".
+    // Put the next open question here and it reappears automatically.
+    question: ""
   };
 
   /* ---------- Theme toggle (light / dark) ----------------------------- */
