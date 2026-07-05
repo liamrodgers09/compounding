@@ -18,9 +18,8 @@
       "How a managing partner at a financial planning firm builds and curates his clients' plans",
     reading:
       "The Stranger in the Woods: The Extraordinary Story of the Last True Hermit, by Michael Finkel",
-    // Answered in the July 4, 2026 post "Doing the Math on the 100-Hour Week".
-    // Put the next open question here and it reappears automatically.
-    question: ""
+    question:
+      "Is the private equity seat at the end of the banking track actually the job I think it is?"
   };
 
   /* ---------- Theme toggle (light / dark) ----------------------------- */
