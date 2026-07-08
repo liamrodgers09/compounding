@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>Pfizer Buys Its Growth. I Checked If the Market Buys It. · Compounding</title>
+  <meta name="description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://compoundingwithliam.com/posts/pfizer-buys-its-growth.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Compounding" />
+  <meta property="og:url" content="https://compoundingwithliam.com/posts/pfizer-buys-its-growth.html" />
+  <meta property="og:title" content="Pfizer Buys Its Growth. I Checked If the Market Buys It." />
+  <meta property="og:description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
+  <meta name="twitter:title" content="Pfizer Buys Its Growth. I Checked If the Market Buys It." />
+  <meta name="twitter:description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">Pfizer Buys Its Growth. I Checked If the Market Buys It.</h1>
+        <p class="post__byline">
+          <time datetime="2026-07-07">July 7, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>Pfizer is over 170 years old and it barely discovers its own drugs anymore. It buys them. Warner-Lambert, Pharmacia, Wyeth, King Pharmaceuticals, Hospira, Medivation, Array, Arena, Biohaven, Global Blood Therapeutics, Seagen, and in 2025, Metsera. That is not a research pipeline, it is a shopping list.</p>
+
+        <p>There is a reason for all the shopping. Between 2026 and 2028 Pfizer loses patent protection on Eliquis, Ibrance, Xtandi, and Prevnar, which the company itself pegs at roughly 17 to 18 billion dollars of annual revenue walking out the door. The COVID money that funded the last few years is already gone, Comirnaty and Paxlovid fell from 56.7 billion dollars in 2022 to about 6.7 billion in 2025. And Pfizer's own labs swung at the obesity market twice and missed both times, which is this whole story in a single example. Instead of building a weight-loss franchise, Pfizer went out and bought one, paying around 10 billion dollars for Metsera in late 2025 after fighting Novo Nordisk through a bidding war to win it. When your own labs cannot replace what the patent cliff is about to take, you buy someone whose labs already did.</p>
+
+        <p>So the strategy is not a mystery. The question I actually care about is whether it works. Not whether the drugs are good, whether the deals create value for the people who own the stock. So I tested it.</p>
+
+        <h2>How I tested it</h2>
+
+        <p>I ran an event study, the same market-model approach I have used before. The idea is simple. On the day a deal is announced, the stock moves for two reasons, the whole market moved and the deal itself moved it. I strip out the market part and keep the rest.</p>
+
+        <p>For each of eleven major Pfizer acquisitions from 2000 to 2023, I estimated Pfizer's normal relationship to the S&amp;P 500 over the year ending ten days before the announcement, a plain least-squares regression of Pfizer's daily returns on the market's. That gives me the return I should have expected on any given day. The abnormal return is what actually happened minus that expectation. I added it up over a three-day window, one day before through one day after the announcement, to get the cumulative abnormal return, the CAR. A positive CAR means the market thinks Pfizer just got richer. A negative one means it thinks Pfizer just overpaid. All of it in Python, prices from yfinance, nothing exotic.</p>
+
+        <h2>What the average said</h2>
+
+        <p>Almost nothing. Across all eleven deals the average three-day CAR was minus 0.18 percent, and it was nowhere near statistically significant. If you stopped there you would decide the market simply has no opinion about Pfizer buying things. That is the wrong place to stop.</p>
+
+        <h2>What the split said</h2>
+
+        <figure class="post__figure">
+          <img class="post__image" src="../images/pfizer_car_chart.png" width="1820" height="1066" alt="Bar chart of Pfizer's three-day cumulative abnormal return around each acquisition announcement, cash bolt-ons in teal and stock-funded mega-mergers in red." />
+          <figcaption class="post__caption">Three-day cumulative abnormal return around each announcement, market model versus the S&amp;P 500. Teal is all-cash, red is stock-funded.</figcaption>
+        </figure>
+
+        <p>Sort the deals by how Pfizer paid, and the flat average breaks into two very different stories.</p>
+
+        <p>The deals Pfizer funded with its own stock got hit. Pharmacia lost 11.1 percent over three days. Wyeth, a stock-heavy mix, lost 9.6 percent. The all-cash deals told the opposite story, they averaged plus 1.7 percent, and only two of the eight printed negative at all. Seagen, the 43 billion dollar cancer bet that was supposed to be the scary number, drew a shrug and a small green tick. The pattern is clean even with a small sample. The market does not punish Pfizer for buying. It punishes how Pfizer buys.</p>
+
+        <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Deal</th><th>Announced</th><th>Value</th><th>Financing</th><th>CAR [-1,+1]</th><th>CAR [-5,+5]</th></tr>
+          </thead>
+          <tbody>
+        <tr><td class="deal">Warner-Lambert</td><td class="num">2000-02-07</td><td class="num">$90.0</td><td class="fin">Stock</td><td class="num pos">+5.36%</td><td class="num neg">-2.50%</td></tr>
+        <tr><td class="deal">Pharmacia</td><td class="num">2002-07-15</td><td class="num">$60.0</td><td class="fin">Stock</td><td class="num neg">-11.13%</td><td class="num neg">-15.74%</td></tr>
+        <tr><td class="deal">Wyeth</td><td class="num">2009-01-26</td><td class="num">$68.0</td><td class="fin">Cash+Stock</td><td class="num neg">-9.57%</td><td class="num neg">-13.68%</td></tr>
+        <tr><td class="deal">King Pharmaceuticals</td><td class="num">2010-10-12</td><td class="num">$3.6</td><td class="fin">Cash</td><td class="num pos">+0.57%</td><td class="num pos">+0.74%</td></tr>
+        <tr><td class="deal">Hospira</td><td class="num">2015-02-05</td><td class="num">$17.0</td><td class="fin">Cash</td><td class="num pos">+4.15%</td><td class="num pos">+6.11%</td></tr>
+        <tr><td class="deal">Medivation</td><td class="num">2016-08-22</td><td class="num">$14.0</td><td class="fin">Cash</td><td class="num neg">-0.32%</td><td class="num pos">+0.42%</td></tr>
+        <tr><td class="deal">Array BioPharma</td><td class="num">2019-06-17</td><td class="num">$11.4</td><td class="fin">Cash</td><td class="num pos">+0.42%</td><td class="num neg">-0.63%</td></tr>
+        <tr><td class="deal">Arena Pharmaceuticals</td><td class="num">2021-12-13</td><td class="num">$6.7</td><td class="fin">Cash</td><td class="num pos">+6.47%</td><td class="num pos">+10.94%</td></tr>
+        <tr><td class="deal">Biohaven</td><td class="num">2022-05-10</td><td class="num">$11.6</td><td class="fin">Cash</td><td class="num pos">+1.20%</td><td class="num pos">+5.90%</td></tr>
+        <tr><td class="deal">Global Blood Ther.</td><td class="num">2022-08-08</td><td class="num">$5.4</td><td class="fin">Cash</td><td class="num neg">-0.28%</td><td class="num neg">-4.13%</td></tr>
+        <tr><td class="deal">Seagen</td><td class="num">2023-03-13</td><td class="num">$43.0</td><td class="fin">Cash</td><td class="num pos">+1.12%</td><td class="num pos">+0.51%</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2>Why that makes sense</h2>
+
+        <p>This is not a Pfizer quirk, it lines up with what the research on acquirer returns has said for decades. When a company pays in its own stock, it is quietly admitting it thinks that stock is expensive, because if it thought the shares were cheap it would pay cash and keep them. Investors read the signal and mark the stock down. Stock-funded mega-mergers also tend to be the ego deals, the mergers of equals with enormous integration risk and a fat premium on top. Cash bolt-ons are the opposite, small enough to swallow, aimed at a specific hole, and paid for with money instead of a confession.</p>
+
+        <p>Warner-Lambert is the one stock deal on the chart that went up, 5.4 percent, and even that fits. It was a hostile fight Pfizer won to take Lipitor, and the market was pricing the prize, not the way Pfizer paid for it.</p>
+
+        <h2>The honest part</h2>
+
+        <p>I want to be careful here, because this is exactly where it would be easy to oversell. Eleven deals is a tiny sample. When I actually test whether the cash group and the stock group are statistically different, the p-value sits around 0.3, which is a polite way of saying I cannot rule out plain luck. The gap between the groups is almost seven percentage points, which is economically enormous. The statistics just are not strong enough to swear on it, and pretending otherwise would be the same mistake I made betting against a one-way afternoon in the futures market.</p>
+
+        <p>So here is what the data supports and nothing more. Pfizer's modern playbook, cash bolt-ons paid for out of the COVID pile, is the exact kind of dealmaking the market has historically tolerated. Seagen is the cleanest example there is, a huge number paid in cash for a real oncology platform, and the market did not blink. That is the disciplined version of buying your growth.</p>
+
+        <p>Whether disciplined buying is enough is a different question, and the stock has its own opinion on that one. Pfizer still trades far below its 2021 high. The market is fine with how Pfizer is shopping. It is still not convinced the shopping will out-run the cliff. That is the part no event study can answer for me. You have to wait for the revenue.</p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

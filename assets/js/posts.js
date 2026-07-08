@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "Pfizer Buys Its Growth. I Checked If the Market Buys It.",
+    date: "2026-07-07",
+    url: "posts/pfizer-buys-its-growth.html",
+    excerpt:
+      "Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything."
+  },
+  {
     title: "Doing the Math on the 100-Hour Week",
     date: "2026-07-04",
     url: "posts/doing-the-math-on-the-100-hour-week.html",

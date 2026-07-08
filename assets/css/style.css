@@ -25,6 +25,8 @@
   --accent: #b0843b;      /* muted gold */
   --accent-dark: #8a6526; /* hover / active */
   --accent-soft: #f0e7d4; /* tag and callout fills */
+  --gain: #1f7a68;        /* positive figures (teal, matches charts) */
+  --loss: #a8433a;        /* negative figures (red, matches charts) */
 
   /* Role-based colors so a theme can flip without breaking dual-use values */
   --header-bg: rgba(246, 244, 238, 0.88);
@@ -668,6 +670,55 @@ main {
   color: var(--muted);
 }
 
+/* Data tables inside posts (scrolls sideways on small screens) */
+.table-wrap {
+  margin: 2.2rem 0;
+  overflow-x: auto;
+}
+
+.table-wrap table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.table-wrap th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 2px solid var(--line);
+  white-space: nowrap;
+}
+
+.table-wrap td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.table-wrap td.deal {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.table-wrap td.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.table-wrap td.pos {
+  color: var(--gain);
+}
+
+.table-wrap td.neg {
+  color: var(--loss);
+}
+
 .post__intro {
   color: var(--ink-soft);
 }
@@ -1060,6 +1111,8 @@ body,
   --accent: #c89b54;      /* gold, lifted a touch for the dark background */
   --accent-dark: #d6ac63; /* links and small accents, brighter on dark */
   --accent-soft: #241d10; /* tag and callout fills */
+  --gain: #4fb39d;        /* positive figures, lifted for dark */
+  --loss: #d98577;        /* negative figures, lifted for dark */
 
   --header-bg: rgba(15, 24, 36, 0.85);
   --cta-bg: #f3ead6;      /* light button on dark */
