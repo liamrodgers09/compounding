@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "What I Learned From a PE Managing Partner Who Bet on One Sector",
+    date: "2026-07-18",
+    url: "posts/pe-managing-partner-bet-on-one-sector.html",
+    excerpt:
+      "Notes from a coffee chat with a middle market aerospace and defense PE Managing Partner on why sector specialization beats staying generalist."
+  },
+  {
     title: "Pfizer Buys Its Growth. I Checked If the Market Buys It.",
     date: "2026-07-07",
     url: "posts/pfizer-buys-its-growth.html",

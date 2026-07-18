@@ -16,8 +16,7 @@
   var CURRENT = {
     researching:
       "How a managing partner at a financial planning firm builds and curates his clients' plans",
-    reading:
-      "The Stranger in the Woods: The Extraordinary Story of the Last True Hermit, by Michael Finkel",
+    reading: "When Genius Failed, by Roger Lowenstein",
     question:
       "Is the private equity seat at the end of the banking track actually the job I think it is?"
   };
