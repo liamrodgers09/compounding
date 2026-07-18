@@ -102,22 +102,4 @@ var POSTS = [
     excerpt:
       "My first real assignment interning at Integritas Wealth Strategies: a full mock plan for a couple in debt with very high goals. What was harder than I expected, and the lesson that stuck."
   }
-
-  // ----- HIDDEN DRAFT --------------------------------------------------
-  // This post exists as an outline page in posts/ but is not finished, so
-  // it is commented out and does not show anywhere on the site. To publish
-  // it: finish writing its page in posts/, then move its entry up above
-  // this comment (add a comma after the entry before it), and remove the
-  // "draft: true" line.
-  /*
-  ,
-  {
-    title: "A conversation that changed how I think about private equity",
-    date: "2026-06-05",
-    url: "posts/private-equity-conversation.html",
-    excerpt:
-      "A reflection after a coffee chat with someone who works in private equity. My own takeaway, in my own words.",
-    draft: true
-  }
-  */
 ];

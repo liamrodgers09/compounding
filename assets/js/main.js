@@ -15,7 +15,7 @@
      ===================================================================== */
   var CURRENT = {
     researching:
-      "How a managing partner at a financial planning firm builds and curates his clients' plans",
+      "An event study on acquirer returns around M&A announcements, the one I promised to send a PE managing partner when it is finished",
     reading: "When Genius Failed, by Roger Lowenstein",
     question:
       "Is the private equity seat at the end of the banking track actually the job I think it is?"

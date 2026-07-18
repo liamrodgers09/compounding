@@ -629,6 +629,17 @@ main {
   margin: 0;
 }
 
+/* Optional standfirst under the byline ("Notes from a coffee chat with...") */
+.post__dek {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  margin: 1rem 0 0;
+}
+
 .post__body {
   max-width: var(--measure);
 }
