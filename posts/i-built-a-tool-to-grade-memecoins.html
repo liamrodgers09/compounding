@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It. · Compounding</title>
+  <meta name="description" content="I built a screener that grades memecoin contracts out of 100, then spent a month attacking it to find out what the letter is actually worth. Part of the score fell for a few dollars. Another check turned out to be beaten by default. The most useful thing I did was kill three fixes before building them." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://compoundingwithliam.com/posts/i-built-a-tool-to-grade-memecoins.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Compounding" />
+  <meta property="og:url" content="https://compoundingwithliam.com/posts/i-built-a-tool-to-grade-memecoins.html" />
+  <meta property="og:title" content="I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It." />
+  <meta property="og:description" content="I built a screener that grades memecoin contracts out of 100, then spent a month attacking it to find out what the letter is actually worth. Part of the score fell for a few dollars. Another check turned out to be beaten by default. The most useful thing I did was kill three fixes before building them." />
+  <meta name="twitter:title" content="I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It." />
+  <meta name="twitter:description" content="I built a screener that grades memecoin contracts out of 100, then spent a month attacking it to find out what the letter is actually worth. Part of the score fell for a few dollars. Another check turned out to be beaten by default. The most useful thing I did was kill three fixes before building them." />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.</h1>
+        <p class="post__byline">
+          <time datetime="2026-08-27">August 27, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>My investment framework has three tiers. Most of it sits in savings and passive index exposure, a meaningful slice goes to established crypto, and a small speculative slice goes to memecoins. That last tier is the one where I am most likely to lose money for reasons that have nothing to do with being wrong about the market, and everything to do with the person who created the token deciding to take it.</p>
+
+        <p>Checking for that by hand means bouncing between DexScreener, RugCheck, a block explorer, and a spreadsheet, for every token, every time. So I built a screener. You paste a contract address, it pulls the data, and it gives you a graded safety readout out of 100 across five components: liquidity depth, holder concentration, contract authority, LP lock status, and age and trading integrity. Any one of six conditions triggers an automatic F regardless of the score.</p>
+
+        <p>It worked. That is the part that made me nervous.</p>
+
+        <h2>Why I went looking for holes</h2>
+
+        <p>A screener that works is more dangerous than no screener at all, because it replaces your suspicion with a letter. If I had no tool, I would look at a brand new token with appropriate paranoia. With a tool, I look at a B and relax. So the letter has to be worth something, and the only way to find out is to attack it.</p>
+
+        <p>I did that for about a month. Here is what I found.</p>
+
+        <h2>The liquidity component was defeatable for a few dollars</h2>
+
+        <p>The liquidity score is built on a figure called verified liquidity, which sums up the real depth across a token's trading pools. Junk pools with fabricated prices need to be excluded first, and the tool did that by taking the median price across all pools and throwing out anything more than 3x away from it.</p>
+
+        <p>The problem is that the median was unweighted. One pool, one vote, regardless of size. Pools cost roughly thirty cents in rent to create.</p>
+
+        <p>So an attacker creates four pools with a fake price. The median moves to their price. Every real pool is now the outlier and gets thrown out. Only the junk survives as "verified," and the score goes up.</p>
+
+        <p>I measured it on a simulated token with three real pools: at four fake pools the score went from 13.5 to 21.0, and at eight it hit 24.8 out of 25. That is grade-changing, in the permissive direction, for a few dollars.</p>
+
+        <p>This is not hypothetical. BONK, a real token with real liquidity, currently has a pool on Orca quoting it at 4,901 times its actual price. That pool reports $93,826 of liquidity. What it actually holds is 14.84 RAY, worth nine dollars and sixty cents.</p>
+
+        <p>There was also a bypass. If a token had fewer than three priced pools, the filter did not run at all, and every pool was kept. On a two-pool token where one was fabricated, the tool displayed a price five thousand times wrong, on exactly the sparse, suspicious tokens where I would have been trusting the screen most.</p>
+
+        <h2>Holder concentration was already broken</h2>
+
+        <p>The rubric has an automatic F if a single wallet holds more than 50 percent of supply. That check cannot be defeated. It is simply already defeated, by default, because splitting supply across wallets is standard practice for anyone launching a token.</p>
+
+        <p>I priced the evasion. To get the top ten wallets under a threshold while still controlling 60 percent of supply, you need about twelve wallets. Each Solana token account costs roughly 0.00204 SOL in rent. At current prices that is about $1.89, against $0.31 for the two accounts you would use anyway.</p>
+
+        <p>There was no fix available. I checked whether I could aggregate balances by owner, and the answer was that it buys nothing: generating a fresh keypair is free, while a token account costs rent, so the lazy path that owner aggregation can detect is the more expensive one. A deliberate attacker was never going to take it.</p>
+
+        <p>So I did not fix it. I relabelled it. The readout now says explicitly that concentration is measured per reported wallet and cannot detect one entity across multiple wallets. An honest label does more work than a check that implies detection it does not have.</p>
+
+        <h2>Three fixes I killed</h2>
+
+        <p>The most useful thing I did all month was propose solutions and then measure them before building them. Three died.</p>
+
+        <p>A liquidity-weighted median. The obvious fix to the pool attack is to weight the median by each pool's liquidity, so a tiny fake pool cannot outvote a real one. Except liquidity is the number the attacker fabricates. Weighting by it converts an attack that costs rent per pool into an attack that costs nothing at all, because claiming a large number is free. It would have been a regression wearing the costume of a fix. The actual answer was to anchor on the counter-side amount, the SOL or USDC genuinely deposited, because you cannot fake having deposited SOL.</p>
+
+        <p>A stricter concentration rule. Moving the automatic F from a single wallet to an aggregate of the top ten. I measured it across 26 organic tokens over $25k in liquidity. At a 50 percent threshold it would have failed 23 percent of legitimate tokens. Anything looser opened a gap where a token that currently fails would start passing. And the whole thing would have raised the attacker's cost from $0.31 to $1.89. Nobody willing to spend thirty cents stops at two dollars.</p>
+
+        <p>A detector for parked capital. The counter-side fix has a known hole: concentrated liquidity positions can hold real SOL in a price range so far away it is never traded. I found I could read the position bounds cheaply and measure how far out of range each one sat. Then I measured 22 legitimate Orca pools and found that being out of range is the normal state. The median pool has 33 percent of its liquidity beyond a 90 percent price move, and two pools sat above 99 percent. Any threshold I picked would have flagged roughly one legitimate pool in five. It also would have been blind on Meteora, which is 48 percent of pairs and does not expose the data at all.</p>
+
+        <p>Each of those felt right when I proposed it. Each one died on a number.</p>
+
+        <h2>The lesson that had nothing to do with crypto</h2>
+
+        <p>I now have a written list of eleven times during this project that a check reported success when it had not actually verified anything. Every single one was in the testing layer, not the product code.</p>
+
+        <p>A probe printed "do not build" from a sample of zero rows, because the filter I wrote matched nothing. A test that passed while four of its six cases never executed, because they shared a cache key. A migration guard that appeared to fire when a different constraint had actually rejected the row.</p>
+
+        <p>They share a mechanism, and it is worth stating plainly. When you aggregate an empty set, you get zero. Sum nothing, zero. Count nothing, zero. Compare nothing, zero difference. And in almost every domain, zero is what "fine" looks like. So the empty case does not merely fail to raise an alarm. It asserts that everything is fine, in the exact words a real healthy result would use.</p>
+
+        <p>That is why knowing about the problem did not stop it happening eleven times. Each individual line of code is correct. The defect lives in the relationship between the math and the meaning, and it shows up in neither.</p>
+
+        <p>The rule I came out with: a passing result is not evidence until you have shown the test could have failed.</p>
+
+        <h2>The honest part</h2>
+
+        <p>Here is what the tool does now. It detects mechanisms by which someone could take your money on purpose. Live mint authority, unlocked liquidity, manufactured pools, wash trading, thin exits. Those are real risks and it measures them carefully.</p>
+
+        <p>Here is what it does not do. It does not tell you whether a token is worth buying. Nothing in the rubric looks at the team, the product, demand, or price. The five weights, 25 and 20 and 25 and 15 and 15, came from my judgment. Nobody fitted them to anything. The tool is internally consistent and externally uncalibrated, and those are completely different properties.</p>
+
+        <p>Worse, the most common way a memecoin goes to zero is not a rug at all. It is that attention moves on, volume dries up, and the price bleeds out over weeks while every single safety check passes the whole way down.</p>
+
+        <p>So an F is a fact and an A is an absence. I use it to exclude, not to select.</p>
+
+        <p>I have started a study to find out whether that is too generous. Every day a job captures every token in the feed, grades it, and records the grade with a timestamp before anything has happened to it. In 60 days I check what those tokens actually did. If A-graded tokens behave no differently from C-graded ones, the letter is decoration and I will say so here.</p>
+
+        <p>That answer is two months away, and I have no idea which way it goes. Which is the only reason the test is worth running.</p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

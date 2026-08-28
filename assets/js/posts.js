@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.",
+    date: "2026-08-27",
+    url: "posts/i-built-a-tool-to-grade-memecoins.html",
+    excerpt:
+      "I built a screener that grades memecoin contracts out of 100, then spent a month attacking it to find out what the letter is actually worth. Part of the score fell for a few dollars. Another check turned out to be beaten by default. The most useful thing I did was kill three fixes before building them."
+  },
+  {
     title: "What I Learned From a PE Managing Partner Who Bet on One Sector",
     date: "2026-07-18",
     url: "posts/pe-managing-partner-bet-on-one-sector.html",
