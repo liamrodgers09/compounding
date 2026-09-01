@@ -19,6 +19,13 @@
 
 var POSTS = [
   {
+    title: "Pfizer Wasn't Special. I Tested 45 Deals to Find Out.",
+    date: "2026-08-31",
+    url: "posts/cash-vs-stock-45-deals.html",
+    excerpt:
+      "I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more."
+  },
+  {
     title: "I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.",
     date: "2026-08-27",
     url: "posts/i-built-a-tool-to-grade-memecoins.html",

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t =
+          localStorage.getItem("theme") ||
+          (window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (t === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>Pfizer Wasn't Special. I Tested 45 Deals to Find Out. · Compounding</title>
+  <meta name="description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
+  <meta name="theme-color" content="#15243b" />
+  <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
+  <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicons/favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../favicons/apple-touch-icon.png" />
+
+  <link rel="canonical" href="https://compoundingwithliam.com/posts/cash-vs-stock-45-deals.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Compounding" />
+  <meta property="og:url" content="https://compoundingwithliam.com/posts/cash-vs-stock-45-deals.html" />
+  <meta property="og:title" content="Pfizer Wasn't Special. I Tested 45 Deals to Find Out." />
+  <meta property="og:description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
+  <meta name="twitter:title" content="Pfizer Wasn't Special. I Tested 45 Deals to Find Out." />
+  <meta name="twitter:description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
+
+  <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://compoundingwithliam.com/og-image.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Compounding, home">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <path d="M4 26 C12 25, 19 20, 28 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+          <circle cx="28" cy="7" r="3" fill="var(--accent)" />
+        </svg>
+        <span class="brand__word">Compounding</span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../journal.html" class="is-active" aria-current="page">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="post container">
+      <header class="post__header">
+        <a class="post__back" href="../journal.html">Journal</a>
+        <h1 class="post__title">Pfizer Wasn't Special. I Tested 45 Deals to Find Out.</h1>
+        <p class="post__byline">
+          <time datetime="2026-08-31">August 31, 2026</time> &middot; Liam Rodgers
+        </p>
+      </header>
+
+      <div class="post__body">
+        <p>When I ran the Pfizer event study, the pattern was too clean to ignore. Cash deals barely moved the stock. Stock-funded deals got hit hard. Eleven data points is not evidence of anything on its own, it is a hypothesis with a nice chart attached. So I went and built a market-wide sample from scratch to see if the pattern was actually a market-wide effect or just something true about how Pfizer, specifically, does deals.</p>
+
+        <p>It held. It got stronger, actually. And the process of building the sample honestly turned up something more interesting than the finance question I started with.</p>
+
+        <h2>How I built it</h2>
+
+        <p>I pulled every 8-K on SEC EDGAR since 2016 whose exhibit language matched deal-consideration phrases like "all-cash transaction" or "stock-for-stock," filtered down to acquirers with a market cap of at least ten billion dollars, and ran the same market-model event study I used on Pfizer, cumulative abnormal return against the S&amp;P 500, over three windows around each announcement. Same math, much bigger sample, and this time nothing hand-picked.</p>
+
+        <h2>What I did not expect</h2>
+
+        <p>Before I got to any finance question, I had to deal with a data quality problem I did not see coming. Of the large-cap filings my initial search pulled in, 54 percent were not actual deal announcements at all. Most were quarterly earnings releases and deal-completion notices that happened to use the same cash-and-stock language a real announcement would. If I had run the study on that raw sample, over half my "deals" would have been noise, and I would have had no idea.</p>
+
+        <p>I built a filter that required real announcement language, agreement to acquire, agreement and plan of merger, and rejected anything that looked like an earnings report or a closing notice instead. Then I screened out deals that landed within a few trading days of an actual earnings release, since that would contaminate the price reaction I was trying to measure. Nobody talks about that 54 percent number when they publish work built this way. I think it might be the more useful finding in this whole project.</p>
+
+        <h2>What the split said</h2>
+
+        <figure class="post__figure">
+          <img class="post__image" src="../images/financing_car_chart.png" width="2600" height="1200" alt="Two-panel chart of cumulative abnormal return for 45 acquisitions. Left, a dot plot of each deal's three-day CAR split into cash and stock groups, with cash clustered near zero and stock spread well below it. Right, bars of mean CAR across three windows, cash positive in green and stock negative in red." />
+          <figcaption class="post__caption">Cumulative abnormal return by financing type, market model versus the S&amp;P 500, 45 deals, 2016 to 2025. Left, every deal individually with group means. Right, mean CAR across all three windows. Green is cash, red is stock.</figcaption>
+        </figure>
+
+        <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Window</th><th>Cash CAR</th><th>Stock CAR</th><th>Gap</th><th>Gap p-value</th></tr>
+          </thead>
+          <tbody>
+        <tr><td class="deal">[-1, +1]</td><td class="num pos">+0.77%</td><td class="num neg">-3.75%</td><td class="num pos">+4.52pp</td><td class="num">0.0006</td></tr>
+        <tr><td class="deal">[-3, +3]</td><td class="num pos">+1.08%</td><td class="num neg">-3.64%</td><td class="num pos">+4.72pp</td><td class="num">0.016</td></tr>
+        <tr><td class="deal">[-5, +5]</td><td class="num pos">+0.95%</td><td class="num neg">-4.26%</td><td class="num pos">+5.20pp</td><td class="num">0.040</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <p>Cash-financed acquirers show close to no reaction at all, and it is nowhere near significant on its own. Stock-financed acquirers lose meaningfully, and that loss is significant in every window I tested, tightest and cleanest right around the announcement itself. The gap between the two groups is significant everywhere, not just in the tight window where noise usually hides. Pfizer was not an outlier. It was a small, correct preview of a market-wide pattern.</p>
+
+        <h2>Why that makes sense</h2>
+
+        <p>This is the same signaling story from the Pfizer post, just with a bigger sample behind it now. A company that pays in its own stock is telling the market, whether it means to or not, that it thinks its shares are fully priced or better. If management believed the stock was cheap, they would pay cash and keep the upside for existing shareholders. The market reads the signal and marks the stock down before the ink is even dry. Cash deals carry no such confession, and the price reaction shows it.</p>
+
+        <h2>The honest part</h2>
+
+        <p>The verification step is the part I actually want to write about, because it is the part that mattered. I hand-checked a stratified twelve-deal subsample against the real SEC filings before I trusted any of this. Ten held up exactly as labeled. One did not. Coeur Mining's acquisition of SilverCrest was sitting in my dataset as a cash deal. The actual filing says "stock-for-stock transaction." I fixed it, and the corrected numbers came out stronger, not weaker, which is not something I engineered, it is just what happened when I checked my own work instead of trusting it.</p>
+
+        <p>That is the real limitation here, and I am not going to pretend it away. I hand-checked twelve of forty-five deals. The other thirty-three rely on a classifier that passed the twelve-deal test but was not exhaustively confirmed. Forty-five deals across nine years is not a huge sample either, and I would want to grow it before I lean on this any harder.</p>
+
+        <p>What I trust is the direction and the size of the effect, and the fact that it survived someone, me, actually going back and checking it against the primary source instead of taking my own pipeline's word for it. That is the standard I am going to hold every version of this project to going forward, Pfizer included.</p>
+      </div>
+
+      <footer class="post__footer">
+        <a class="button button--ghost" href="../journal.html">Back to the journal</a>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="site-footer__brand">Compounding</p>
+      <nav aria-label="Footer">
+        <ul class="site-footer__nav">
+          <li><a href="../journal.html">Journal</a></li>
+          <li><a href="../reading-list.html">Reading List</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
