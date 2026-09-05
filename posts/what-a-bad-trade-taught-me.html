@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>The trade I managed well and still lost · Compounding</title>
-  <meta name="description" content="On April 8 I went long into a brutal sell-off, managed the trade by the book, and still lost. Why the entry was the real mistake, not the management." />
+<title>The trade I managed well and still lost · Compounding</title>
+  <meta name="description" content="Revisiting an April 8 entry during a sell-off and separating the entry decision from trade management." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
@@ -32,9 +17,9 @@
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/posts/what-a-bad-trade-taught-me.html" />
   <meta property="og:title" content="The trade I managed well and still lost" />
-  <meta property="og:description" content="On April 8 I went long into a brutal sell-off, managed the trade by the book, and still lost. Why the entry was the real mistake, not the management." />
+  <meta property="og:description" content="Revisiting an April 8 entry during a sell-off and separating the entry decision from trade management." />
   <meta name="twitter:title" content="The trade I managed well and still lost" />
-  <meta name="twitter:description" content="On April 8 I went long into a brutal sell-off, managed the trade by the book, and still lost. Why the entry was the real mistake, not the management." />
+  <meta name="twitter:description" content="Revisiting an April 8 entry during a sell-off and separating the entry decision from trade management." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="../feed.xml" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -88,6 +74,7 @@
           <time datetime="2026-06-20">June 20, 2026</time> &middot; Liam Rodgers
         </p>
       </header>
+        <p class="post__reading section__note">Trading Journal · About 2 min read</p>
 
       <div class="post__body">
         <h2>The setup</h2>
@@ -138,6 +125,7 @@
       </div>
 
       <footer class="post__footer">
+        <div class="read-next"><p class="eyebrow">Read next</p><a href="an-autopsy-of-a-losing-book.html">Looking Back at My Losing Gold Trades</a></div>
         <a class="button button--ghost" href="../journal.html">Back to the journal</a>
       </footer>
     </article>
@@ -152,13 +140,14 @@
           <li><a href="../reading-list.html">Reading List</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

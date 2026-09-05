@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>An Autopsy of a Losing Book: What My Gold Trades Taught Me · Compounding</title>
-  <meta name="description" content="A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data." />
+<title>Looking Back at My Losing Gold Trades · Compounding</title>
+  <meta name="description" content="Thirteen simulated gold trades, a losing account, and the limits of what a directional breakdown can explain." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
@@ -31,10 +16,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/posts/an-autopsy-of-a-losing-book.html" />
-  <meta property="og:title" content="An Autopsy of a Losing Book: What My Gold Trades Taught Me" />
-  <meta property="og:description" content="A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data." />
-  <meta name="twitter:title" content="An Autopsy of a Losing Book: What My Gold Trades Taught Me" />
-  <meta name="twitter:description" content="A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data." />
+  <meta property="og:title" content="Looking Back at My Losing Gold Trades" />
+  <meta property="og:description" content="Thirteen simulated gold trades, a losing account, and the limits of what a directional breakdown can explain." />
+  <meta name="twitter:title" content="Looking Back at My Losing Gold Trades" />
+  <meta name="twitter:description" content="Thirteen simulated gold trades, a losing account, and the limits of what a directional breakdown can explain." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="../feed.xml" />
+<meta property="article:modified_time" content="2026-09-05" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,113 +70,37 @@
     <article class="post container">
       <header class="post__header">
         <a class="post__back" href="../journal.html">Journal</a>
-        <h1 class="post__title">An Autopsy of a Losing Book: What My Gold Trades Taught Me</h1>
+        <h1 class="post__title">Looking Back at My Losing Gold Trades</h1>
         <p class="post__byline">
           <time datetime="2026-06-22">June 22, 2026</time> &middot; Liam Rodgers
         </p>
       </header>
+        <p class="post__reading section__note">Trading Journal · About 2 min read</p>
 
       <div class="post__body">
-        <p>
-          Most trading content celebrates winners. This is not that.
-        </p>
-        <p>
-          Over the past seven months I ran a paper-trading account, and when I
-          finally sat down to audit it rather than trade it, the verdict was
-          unambiguous. I had been losing, and gold was the worst of it. What
-          surprised me was not the loss. It was the reason behind it, which I
-          never would have found by trusting my instincts.
-        </p>
-        <p>
-          One note on context, because intellectual honesty is the whole point of
-          this exercise: every figure below comes from a simulated account, not
-          real capital. The dollar amounts are notional. What they measure,
-          however, is entirely real, namely my decisions, my discipline, and the
-          quality of my process.
-        </p>
-        <p>
-          I scaled back my trading a while ago, and the reason was a feeling. The
-          whole endeavor had begun to resemble gambling more than investing. I was
-          taking positions across nearly a dozen instruments, gold, crude oil,
-          Nasdaq futures, silver, Bitcoin, and a handful of equities, with
-          inconsistent sizing and no genuine thesis behind most of them. Stepping
-          back felt correct, but a feeling is not evidence. So I did what I should
-          have done at the outset: I interrogated the data. I exported my complete
-          order history and wrote a Python tool to reconstruct every completed
-          trade, pairing each entry with its exit and converting raw fills into
-          profit and loss. Then I isolated the instrument I traded most, gold, and
-          put it under a microscope.
-        </p>
-        <p>
-          The headline figures were sobering. Across 13 completed gold trades, I
-          finished down roughly $500. My win rate was 31%. My profit factor, the
-          ratio of gross profits to gross losses, came to 0.65, which means I lost
-          about a dollar and a half for every dollar I earned. My expectancy was
-          negative $38 per trade. Stated plainly, the average gold trade I placed
-          was a money-losing decision. A negative-expectancy strategy is not a
-          strategy. It is a leak.
-        </p>
-        <p>
-          But the audit justified itself the moment I broke the losses down,
-          because they were not random noise. They were concentrated almost
-          entirely on one side of the market. Every time I went long gold, I lost.
-          Not most of the time. Every time. Six long positions, zero winners, a
-          combined loss of roughly $1,275. My short positions, by contrast, were
-          actually profitable: seven trades, a 57% win rate, and a net gain near
-          $775. The entirety of my gold loss traced back to a single repeated
-          error, buying an instrument I evidently could not read from the long
-          side.
-        </p>
-
-        <figure class="post__figure">
+        <p>Over seven months I ran a paper-trading account across gold, crude oil, Nasdaq futures, and other instruments. I eventually scaled back because my sizing was inconsistent and I often entered without a clear thesis. Then I exported the order history to see what I could learn from the results.</p>
+        <div class="callout"><p>All trades and dollar amounts in this post are simulated. No real capital was at risk in this account.</p></div>
+        <h2>Reconstructing the account</h2><p>The original analysis script is not included here, so the trade-pairing calculation and reported totals cannot yet be independently reproduced from this page.</p>
+        <p>The Python analysis paired entries with exits and calculated profit and loss, then focused on gold, the instrument I had traded most. Across 13 completed trades, the account lost roughly $500. The win rate was 31%, and the profit factor, gross profits divided by gross losses, was 0.65.</p>
+        <p>The average result was about negative $38 per trade. That describes these trades; it is too little evidence to estimate what a repeatable strategy would earn over time.</p>
+        <h2>Where the losses were</h2>
+        <p>All six long positions lost money, for a combined loss of roughly $1,275. The seven shorts had a 57% win rate and gained about $775. Splitting the results by direction showed something the net loss alone could not: the long trades accounted for the losses, while the shorts offset part of them.</p>
+<figure class="post__figure">
           <img class="post__image" src="../images/gold-trading-analysis.png" width="1950" height="1200" alt="Dashboard of my gold trading performance: equity curve, profit and loss per trade, long versus short results, and average win versus average loss" />
-          <figcaption class="post__caption">My gold trades, reconstructed and analyzed in Python. The long versus short panel is the whole story.</figcaption>
+          <figcaption class="post__caption">My gold trades, reconstructed and analyzed in Python. The long versus short panel shows where the losses occurred in this sample.</figcaption>
         </figure>
-
-        <p>
-          I want to be disciplined about this claim. Six trades is a small sample,
-          and I will not pretend that "zero percent on longs" is an immutable law
-          rather than a strong signal carrying some element of bad luck. But going
-          zero for six, with my single largest loss of the entire set being a long
-          position, is not a result you wave away as variance. It is a blind spot.
-          And it was completely invisible to me in real time, because in the
-          moment, each long felt justified.
-        </p>
-        <p>
-          The real lesson was not simply that I trade gold poorly, though that is a
-          fair reading. It concerned the distance between intuition and evidence.
-          While I was placing those trades, my instinct registered only that
-          something felt wrong. It could not tell me what. It took a few hundred
-          lines of Python and a willingness to confront my own record to surface a
-          pattern that, in hindsight, was glaring. That distance, between what I
-          sensed and what was actually occurring, is the difference between
-          operating on conviction and operating on data. Every serious market
-          participant, from a discretionary trader to a quantitative fund, lives on
-          the data side of that line. I had been on the other one.
-        </p>
-        <p>
-          Three principles emerged that I intend to carry forward. First,
-          attribution matters more than the bottom line. A net result tells you
-          whether you won or lost. An honest breakdown tells you why, and the why
-          is the only part you can actually act on. Second, sample size is not
-          optional. Distributing a handful of trades across ten instruments
-          guarantees you can never learn anything statistically meaningful about
-          any one of them. Depth beats breadth. Third, recognizing when to step
-          away is itself a skill. I was fortunate to learn it on a simulated
-          account at sixteen, rather than with real capital a decade from now.
-        </p>
-        <p>
-          I am not presenting a winning system, because I did not have one. I am
-          presenting the process of discovering that, and that process, sitting
-          with my own losing record and refusing to look away, taught me more about
-          how markets actually function than any profitable trade ever did. The
-          objective was never to prove I could trade. It was to learn to reason
-          rigorously about risk, evidence, and my own decisions. Measured against
-          that goal, the losing book may be the most useful thing I have produced.
-        </p>
+        <h2>What thirteen trades cannot tell me</h2>
+        <p>It is tempting to turn that split into a rule: I should stop going long gold. But six trades cannot establish that I have a persistent directional weakness. The outcome could reflect the market conditions, entry timing, sizing, chance, or a combination. I have not separated those explanations.</p>
+        <p>The breakdown tells me where to look. It does not yet tell me why those trades lost. To investigate that, I would need to compare the setups, position sizes, and conditions around each entry, rather than infer the cause from the final profit and loss.</p>
+        <h2>What I take from the audit</h2>
+        <p>I had already felt that my process was inconsistent. Reconstructing the account gave me specific decisions to revisit. I could also see how spreading a small number of trades across many instruments limited what I could learn about any one of them.</p>
+        <p>Stepping back was useful. So was doing this with a simulated account at sixteen. The unresolved question is which parts of my decision-making produced these results, and which parts were noise. The chart helps me ask that question more precisely.</p>
       </div>
 
+      <aside class="revision-note" aria-label="Revision note"><p><strong>Updated <time datetime="2026-09-05">September 5, 2026</time></strong></p><p>Revised the interpretation to separate the results of thirteen simulated trades from claims about a lasting trading weakness. Clarified that the original trade-pairing code is unavailable. The reported trade counts and dollar amounts are unchanged.</p></aside>
+
       <footer class="post__footer">
+        <div class="read-next"><p class="eyebrow">Read next</p><a href="what-trading-and-investing-have-taught-me.html">What trading and investing have each taught me</a></div>
         <a class="button button--ghost" href="../journal.html">Back to the journal</a>
       </footer>
     </article>
@@ -204,13 +115,14 @@
           <li><a href="../reading-list.html">Reading List</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

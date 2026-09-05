@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>Pfizer Buys Its Growth. I Checked If the Market Buys It. · Compounding</title>
-  <meta name="description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
+<title>How the Market Reacted to Pfizer’s Acquisitions · Compounding</title>
+  <meta name="description" content="An event study of eleven Pfizer acquisitions. Payment types showed different returns, but the small sample leaves uncertainty." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
@@ -31,10 +16,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/posts/pfizer-buys-its-growth.html" />
-  <meta property="og:title" content="Pfizer Buys Its Growth. I Checked If the Market Buys It." />
-  <meta property="og:description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
-  <meta name="twitter:title" content="Pfizer Buys Its Growth. I Checked If the Market Buys It." />
-  <meta name="twitter:description" content="Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything." />
+  <meta property="og:title" content="How the Market Reacted to Pfizer’s Acquisitions" />
+  <meta property="og:description" content="An event study of eleven Pfizer acquisitions. Payment types showed different returns, but the small sample leaves uncertainty." />
+  <meta name="twitter:title" content="How the Market Reacted to Pfizer’s Acquisitions" />
+  <meta name="twitter:description" content="An event study of eleven Pfizer acquisitions. Payment types showed different returns, but the small sample leaves uncertainty." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="../feed.xml" />
+<meta property="article:modified_time" content="2026-09-05" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,11 +70,12 @@
     <article class="post container">
       <header class="post__header">
         <a class="post__back" href="../journal.html">Journal</a>
-        <h1 class="post__title">Pfizer Buys Its Growth. I Checked If the Market Buys It.</h1>
+        <h1 class="post__title">How the Market Reacted to Pfizer’s Acquisitions</h1>
         <p class="post__byline">
           <time datetime="2026-07-07">July 7, 2026</time> &middot; Liam Rodgers
         </p>
       </header>
+        <p class="post__reading section__note">Research · About 5 min read</p>
 
       <div class="post__body">
         <p>Pfizer is over 170 years old and it barely discovers its own drugs anymore. It buys them. Warner-Lambert, Pharmacia, Wyeth, King Pharmaceuticals, Hospira, Medivation, Array, Arena, Biohaven, Global Blood Therapeutics, Seagen, and in 2025, Metsera. That is not a research pipeline, it is a shopping list.</p>
@@ -96,11 +84,11 @@
 
         <p>So the strategy is not a mystery. The question I actually care about is whether it works. Not whether the drugs are good, whether the deals create value for the people who own the stock. So I tested it.</p>
 
-        <h2>How I tested it</h2>
+        <h2>How the analysis was run</h2><p>The original code and price data are not available here. The table groups Wyeth, which used mixed cash and stock consideration, with stock-funded deals; this differs from a pure cash-versus-stock comparison.</p>
 
-        <p>I ran an event study, the same market-model approach I have used before. The idea is simple. On the day a deal is announced, the stock moves for two reasons, the whole market moved and the deal itself moved it. I strip out the market part and keep the rest.</p>
+        <p>I ran an event study, the same market-model approach I have used before. The idea is simple. I estimate the return associated with the market and compare it with the observed return around a deal announcement. The difference can also include other company news and model error.</p>
 
-        <p>For each of eleven major Pfizer acquisitions from 2000 to 2023, I estimated Pfizer's normal relationship to the S&amp;P 500 over the year ending ten days before the announcement, a plain least-squares regression of Pfizer's daily returns on the market's. That gives me the return I should have expected on any given day. The abnormal return is what actually happened minus that expectation. I added it up over a three-day window, one day before through one day after the announcement, to get the cumulative abnormal return, the CAR. A positive CAR means the market thinks Pfizer just got richer. A negative one means it thinks Pfizer just overpaid. All of it in Python, prices from yfinance, nothing exotic.</p>
+        <p>For each of eleven major Pfizer acquisitions from 2000 to 2023, I estimated Pfizer's normal relationship to the S&amp;P 500 over the year ending ten days before the announcement, a plain least-squares regression of Pfizer's daily returns on the market's. That gives me the return I should have expected on any given day. The abnormal return is what actually happened minus that expectation. I added it up over a three-day window, one day before through one day after the announcement, to get the cumulative abnormal return, the CAR. A positive CAR means the return exceeded the model expectation; a negative CAR means it fell short. Neither sign alone establishes whether a deal will create value. All of it in Python, prices from yfinance, nothing exotic.</p>
 
         <h2>What the average said</h2>
 
@@ -115,7 +103,7 @@
 
         <p>Sort the deals by how Pfizer paid, and the flat average breaks into two very different stories.</p>
 
-        <p>The deals Pfizer funded with its own stock got hit. Pharmacia lost 11.1 percent over three days. Wyeth, a stock-heavy mix, lost 9.6 percent. The all-cash deals told the opposite story, they averaged plus 1.7 percent, and only two of the eight printed negative at all. Seagen, the 43 billion dollar cancer bet that was supposed to be the scary number, drew a shrug and a small green tick. The pattern is clean even with a small sample. The market does not punish Pfizer for buying. It punishes how Pfizer buys.</p>
+        <p>The deals Pfizer funded with its own stock got hit. Pharmacia lost 11.1 percent over three days. Wyeth, a stock-heavy mix, lost 9.6 percent. The all-cash deals told the opposite story, they averaged plus 1.7 percent, and only two of the eight printed negative at all. Seagen, the 43 billion dollar cancer bet that was supposed to be the scary number, drew a shrug and a small green tick. The pattern is clean even with a small sample. In this sample, returns differ by payment type. That does not isolate payment type from deal size, timing, or other differences.</p>
 
         <div class="table-wrap">
         <table>
@@ -144,7 +132,7 @@
 
         <p>Warner-Lambert is the one stock deal on the chart that went up, 5.4 percent, and even that fits. It was a hostile fight Pfizer won to take Lipitor, and the market was pricing the prize, not the way Pfizer paid for it.</p>
 
-        <h2>The honest part</h2>
+        <h2>What this sample can support</h2>
 
         <p>I want to be careful here, because this is exactly where it would be easy to oversell. Eleven deals is a tiny sample. When I actually test whether the cash group and the stock group are statistically different, the p-value sits around 0.3, which is a polite way of saying I cannot rule out plain luck. The gap between the groups is almost seven percentage points, which is economically enormous. The statistics just are not strong enough to swear on it, and pretending otherwise would be the same mistake I made betting against a one-way afternoon in the futures market.</p>
 
@@ -153,7 +141,10 @@
         <p>Whether disciplined buying is enough is a different question, and the stock has its own opinion on that one. Pfizer still trades far below its 2021 high. The market is fine with how Pfizer is shopping. It is still not convinced the shopping will out-run the cliff. That is the part no event study can answer for me. You have to wait for the revenue.</p>
       </div>
 
+      <aside class="revision-note" aria-label="Revision note"><p><strong>Updated <time datetime="2026-09-05">September 5, 2026</time></strong></p><p>Clarified what abnormal returns measure, the limits of the small sample, and how Wyeth’s mixed financing is grouped. Added a note about the unavailable original code and price data. The reported deal returns are unchanged.</p></aside>
+
       <footer class="post__footer">
+        <div class="read-next"><p class="eyebrow">Read next</p><a href="cash-vs-stock-45-deals.html">Cash vs. Stock: What I Found in 45 Acquisitions</a></div>
         <a class="button button--ghost" href="../journal.html">Back to the journal</a>
       </footer>
     </article>
@@ -168,13 +159,14 @@
           <li><a href="../reading-list.html">Reading List</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>Pfizer Wasn't Special. I Tested 45 Deals to Find Out. · Compounding</title>
-  <meta name="description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
+<title>Cash vs. Stock: What I Found in 45 Acquisitions · Compounding</title>
+  <meta name="description" content="A comparison of cash- and stock-funded acquisitions, and the classification error that made me revisit the sample." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
@@ -31,10 +16,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/posts/cash-vs-stock-45-deals.html" />
-  <meta property="og:title" content="Pfizer Wasn't Special. I Tested 45 Deals to Find Out." />
-  <meta property="og:description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
-  <meta name="twitter:title" content="Pfizer Wasn't Special. I Tested 45 Deals to Find Out." />
-  <meta name="twitter:description" content="I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more." />
+  <meta property="og:title" content="Cash vs. Stock: What I Found in 45 Acquisitions" />
+  <meta property="og:description" content="A comparison of cash- and stock-funded acquisitions, and the classification error that made me revisit the sample." />
+  <meta name="twitter:title" content="Cash vs. Stock: What I Found in 45 Acquisitions" />
+  <meta name="twitter:description" content="A comparison of cash- and stock-funded acquisitions, and the classification error that made me revisit the sample." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="../feed.xml" />
+<meta property="article:modified_time" content="2026-09-05" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,63 +70,60 @@
     <article class="post container">
       <header class="post__header">
         <a class="post__back" href="../journal.html">Journal</a>
-        <h1 class="post__title">Pfizer Wasn't Special. I Tested 45 Deals to Find Out.</h1>
+        <h1 class="post__title">Cash vs. Stock: What I Found in 45 Acquisitions</h1>
         <p class="post__byline">
           <time datetime="2026-08-31">August 31, 2026</time> &middot; Liam Rodgers
         </p>
       </header>
+        <p class="post__reading section__note">Research · About 4 min read</p>
 
       <div class="post__body">
-        <p>When I ran the Pfizer event study, the pattern was too clean to ignore. Cash deals barely moved the stock. Stock-funded deals got hit hard. Eleven data points is not evidence of anything on its own, it is a hypothesis with a nice chart attached. So I went and built a market-wide sample from scratch to see if the pattern was actually a market-wide effect or just something true about how Pfizer, specifically, does deals.</p>
-
-        <p>It held. It got stronger, actually. And the process of building the sample honestly turned up something more interesting than the finance question I started with.</p>
-
-        <h2>How I built it</h2>
-
-        <p>I pulled every 8-K on SEC EDGAR since 2016 whose exhibit language matched deal-consideration phrases like "all-cash transaction" or "stock-for-stock," filtered down to acquirers with a market cap of at least ten billion dollars, and ran the same market-model event study I used on Pfizer, cumulative abnormal return against the S&amp;P 500, over three windows around each announcement. Same math, much bigger sample, and this time nothing hand-picked.</p>
-
-        <h2>What I did not expect</h2>
-
-        <p>Before I got to any finance question, I had to deal with a data quality problem I did not see coming. Of the large-cap filings my initial search pulled in, 54 percent were not actual deal announcements at all. Most were quarterly earnings releases and deal-completion notices that happened to use the same cash-and-stock language a real announcement would. If I had run the study on that raw sample, over half my "deals" would have been noise, and I would have had no idea.</p>
-
-        <p>I built a filter that required real announcement language, agreement to acquire, agreement and plan of merger, and rejected anything that looked like an earnings report or a closing notice instead. Then I screened out deals that landed within a few trading days of an actual earnings release, since that would contaminate the price reaction I was trying to measure. Nobody talks about that 54 percent number when they publish work built this way. I think it might be the more useful finding in this whole project.</p>
-
-        <h2>What the split said</h2>
-
-        <figure class="post__figure">
-          <img class="post__image" src="../images/financing_car_chart.png" width="2600" height="1200" alt="Two-panel chart of cumulative abnormal return for 45 acquisitions. Left, a dot plot of each deal's three-day CAR split into cash and stock groups, with cash clustered near zero and stock spread well below it. Right, bars of mean CAR across three windows, cash positive in green and stock negative in red." />
-          <figcaption class="post__caption">Cumulative abnormal return by financing type, market model versus the S&amp;P 500, 45 deals, 2016 to 2025. Left, every deal individually with group means. Right, mean CAR across all three windows. Green is cash, red is stock.</figcaption>
-        </figure>
-
-        <div class="table-wrap">
+        <p>My <a href="pfizer-buys-its-growth.html">Pfizer study</a> raised a question: would a difference between cash- and stock-funded acquisitions appear in a broader sample? The saved dataset contains 45 candidate events. Its corrected figures show a gap, but an audit also exposed limits in the classifications and event dates.</p>
+        <h2>What can be reproduced</h2>
+        <p>The table below can be reproduced from the saved cumulative abnormal returns (CARs) after changing Coeur Mining's financing label from cash to stock. The original saved file still had the old label. Both versions are available below, so the correction is visible.</p>
+        <p>Each window uses fewer than 45 observations because some return values are missing. The cash and stock counts shown here are the observations used in each comparison.</p>
+<div class="table-wrap">
         <table>
           <thead>
-            <tr><th>Window</th><th>Cash CAR</th><th>Stock CAR</th><th>Gap</th><th>Gap p-value</th></tr>
+            <tr><th>Window</th><th>Cash n</th><th>Stock n</th><th>Cash CAR</th><th>Stock CAR</th><th>Gap</th><th>Gap p-value</th><th>95% CI for gap</th></tr>
           </thead>
           <tbody>
-        <tr><td class="deal">[-1, +1]</td><td class="num pos">+0.77%</td><td class="num neg">-3.75%</td><td class="num pos">+4.52pp</td><td class="num">0.0006</td></tr>
-        <tr><td class="deal">[-3, +3]</td><td class="num pos">+1.08%</td><td class="num neg">-3.64%</td><td class="num pos">+4.72pp</td><td class="num">0.016</td></tr>
-        <tr><td class="deal">[-5, +5]</td><td class="num pos">+0.95%</td><td class="num neg">-4.26%</td><td class="num pos">+5.20pp</td><td class="num">0.040</td></tr>
+        <tr><td class="deal">[-1, +1]</td><td>17</td><td>20</td><td class="num pos">+0.77%</td><td class="num neg">-3.75%</td><td class="num pos">+4.52pp</td><td class="num">0.0006</td><td>+2.14 to +6.90pp</td></tr>
+        <tr><td class="deal">[-3, +3]</td><td>17</td><td>18</td><td class="num pos">+1.08%</td><td class="num neg">-3.64%</td><td class="num pos">+4.72pp</td><td class="num">0.016</td><td>+0.97 to +8.47pp</td></tr>
+        <tr><td class="deal">[-5, +5]</td><td>16</td><td>17</td><td class="num pos">+0.95%</td><td class="num neg">-4.26%</td><td class="num pos">+5.20pp</td><td class="num">0.040</td><td>+0.27 to +10.14pp</td></tr>
           </tbody>
         </table>
         </div>
+        <p>Cash-minus-stock gaps are positive in all three windows. The p-values come from a Welch two-sample test that reproduces the published figures; the original testing script was not recovered. The 95% intervals were calculated for this update using the Welch standard error and degrees of freedom. They are unadjusted for multiple comparisons. These overlapping windows are not independent replications, and the candidate events have not all been checked for duplication or correct financing labels.</p>
+        <h2>What the verification record says</h2>
+        <p>The handoff records twelve selected entries: ten financing labels supported by extracted filing quotes, one correction for Coeur / SilverCrest, and one Cheniere entry examined for possible duplication rather than financing type. That is eleven reported financing checks, not twelve. The remaining 34 financing labels, including that Cheniere entry, do not have a completed check in this record.</p>
+        <p>The verification record includes extracted filing quotes and a review of the two Cheniere filings. It was reconstructed from earlier project records rather than re-verified during this update. Whether the two Cheniere entries represent separate transactions remains unresolved.</p>
+        <h2>How the saved code works</h2>
+        <ul class="research-facts">
+          <li><strong>Classification:</strong> the harvest assigned cash or stock from its search-phrase bucket. The later text filter checked announcement language, but did not use its cash/stock term flags to validate financing labels.</li>
+          <li><strong>Event timing:</strong> the return code uses the first trading day on or after the filing date. It does not establish the original announcement time or adjust for after-hours news.</li>
+          <li><strong>Return model:</strong> adjusted closing prices from yfinance, simple daily returns, and an OLS market model against ^GSPC. The estimation slice is 200 aligned observations at positions [-220, -20) relative to the event.</li>
+          <li><strong>Windows:</strong> summed abnormal returns over [-1,+1], [-3,+3], and [-5,+5], expressed as percentages.</li>
+          <li><strong>Earnings screening:</strong> the surviving script reads recent SEC Item 2.02 filings and approximates trading-day gaps using calendar days multiplied by 5/7. Older earnings history and other company news are not comprehensively screened.</li>
+        </ul>
+        <p>The written method describes a $10 billion current-market-cap filter. Its code and intermediate data were not recovered. The saved earnings script marks affected windows, but the step that removed their returns from the final file is also missing.</p>
+        <h2>What I would not conclude yet</h2>
+        <p>This is an exploratory association in saved data, not evidence that payment type causes announcement returns. Deal size, timing, sector, repeated acquirers, and classification errors could affect the comparison. A stock-payment signal is one possible interpretation, not a mechanism this study establishes.</p>
+        <p>The earlier write-up's 54% filtering claim is unconfirmed: its notes report both 54.2% and 60 of 107, which do not agree. The intermediate file needed to resolve that discrepancy is missing, so I have removed the percentage as a finding.</p>
+        <h2 id="methodology">Data and reproduction</h2>
+        <ul class="research-facts">
+          <li><a href="../research/acquisitions/deals_final_AS_SAVED_uncorrected.csv" download>Original saved data (CSV)</a></li>
+          <li><a href="../research/acquisitions/deals_final_DERIVED_corrected.csv" download>Derived data with the Coeur correction (CSV)</a></li>
+          <li><a href="../research/acquisitions/reproduce_published_stats.py" download>Statistics reproduction script</a> and <a href="../research/acquisitions/README.md">scope and instructions</a></li>
+        </ul>
+        <p>These materials reproduce the table from saved returns. They do not reproduce the full route from SEC filings and market prices. Fully checking the candidate events, rebuilding missing stages, and documenting uncertainty are the next steps before a broader claim would be justified.</p>
 
-        <p>Cash-financed acquirers show close to no reaction at all, and it is nowhere near significant on its own. Stock-financed acquirers lose meaningfully, and that loss is significant in every window I tested, tightest and cleanest right around the announcement itself. The gap between the two groups is significant everywhere, not just in the tight window where noise usually hides. Pfizer was not an outlier. It was a small, correct preview of a market-wide pattern.</p>
-
-        <h2>Why that makes sense</h2>
-
-        <p>This is the same signaling story from the Pfizer post, just with a bigger sample behind it now. A company that pays in its own stock is telling the market, whether it means to or not, that it thinks its shares are fully priced or better. If management believed the stock was cheap, they would pay cash and keep the upside for existing shareholders. The market reads the signal and marks the stock down before the ink is even dry. Cash deals carry no such confession, and the price reaction shows it.</p>
-
-        <h2>The honest part</h2>
-
-        <p>The verification step is the part I actually want to write about, because it is the part that mattered. I hand-checked a stratified twelve-deal subsample against the real SEC filings before I trusted any of this. Ten held up exactly as labeled. One did not. Coeur Mining's acquisition of SilverCrest was sitting in my dataset as a cash deal. The actual filing says "stock-for-stock transaction." I fixed it, and the corrected numbers came out stronger, not weaker, which is not something I engineered, it is just what happened when I checked my own work instead of trusting it.</p>
-
-        <p>That is the real limitation here, and I am not going to pretend it away. I hand-checked twelve of forty-five deals. The other thirty-three rely on a classifier that passed the twelve-deal test but was not exhaustively confirmed. Forty-five deals across nine years is not a huge sample either, and I would want to grow it before I lean on this any harder.</p>
-
-        <p>What I trust is the direction and the size of the effect, and the fact that it survived someone, me, actually going back and checking it against the primary source instead of taking my own pipeline's word for it. That is the standard I am going to hold every version of this project to going forward, Pfizer included.</p>
       </div>
 
+      <aside class="revision-note" aria-label="Revision note"><p><strong>Updated <time datetime="2026-09-05">September 5, 2026</time></strong></p><p>Added the actual sample counts for each window, confidence intervals, and downloadable original and corrected data. Clarified that eleven of the twelve selected entries had reported financing checks, removed the unconfirmed 54% filtering figure, and narrowed the conclusions. The previously published group means and gap p-values are unchanged.</p></aside>
+
       <footer class="post__footer">
+        <div class="read-next"><p class="eyebrow">Read next</p><a href="i-built-a-tool-to-grade-memecoins.html">A Month Testing My Memecoin Screener</a></div>
         <a class="button button--ghost" href="../journal.html">Back to the journal</a>
       </footer>
     </article>
@@ -154,13 +138,14 @@
           <li><a href="../reading-list.html">Reading List</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

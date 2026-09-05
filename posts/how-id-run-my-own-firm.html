@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>How I'd Run My Own Firm · Compounding</title>
-  <meta name="description" content="The investment methodology I'd actually run, built from three distinctions about how the industry works and two tools I coded myself. Honest about what I can and can't yet claim." />
+<title>How I&#x27;d Run My Own Firm · Compounding</title>
+  <meta name="description" content="A proposed investment approach, two tools I built, and the parts I have yet to test." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="../favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="../favicons/favicon.svg" type="image/svg+xml" />
@@ -31,10 +16,10 @@
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/posts/how-id-run-my-own-firm.html" />
-  <meta property="og:title" content="How I'd Run My Own Firm" />
-  <meta property="og:description" content="The investment methodology I'd actually run, built from three distinctions about how the industry works and two tools I coded myself. Honest about what I can and can't yet claim." />
-  <meta name="twitter:title" content="How I'd Run My Own Firm" />
-  <meta name="twitter:description" content="The investment methodology I'd actually run, built from three distinctions about how the industry works and two tools I coded myself. Honest about what I can and can't yet claim." />
+  <meta property="og:title" content="How I&#x27;d Run My Own Firm" />
+  <meta property="og:description" content="A proposed investment approach, two tools I built, and the parts I have yet to test." />
+  <meta name="twitter:title" content="How I&#x27;d Run My Own Firm" />
+  <meta name="twitter:description" content="A proposed investment approach, two tools I built, and the parts I have yet to test." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="../feed.xml" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,11 +69,12 @@
     <article class="post container">
       <header class="post__header">
         <a class="post__back" href="../journal.html">Journal</a>
-        <h1 class="post__title">How I'd Run My Own Firm</h1>
+        <h1 class="post__title">How I&#x27;d Run My Own Firm</h1>
         <p class="post__byline">
           <time datetime="2026-06-26">June 26, 2026</time> &middot; Liam Rodgers
         </p>
       </header>
+        <p class="post__reading section__note">Research · About 11 min read</p>
 
       <div class="post__body">
         <p>
@@ -364,6 +351,7 @@
       </div>
 
       <footer class="post__footer">
+        <div class="read-next"><p class="eyebrow">Read next</p><a href="cash-vs-stock-45-deals.html">Cash vs. Stock: What I Found in 45 Acquisitions</a></div>
         <a class="button button--ghost" href="../journal.html">Back to the journal</a>
       </footer>
     </article>
@@ -378,13 +366,14 @@
           <li><a href="../reading-list.html">Reading List</a></li>
           <li><a href="../about.html">About</a></li>
           <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
