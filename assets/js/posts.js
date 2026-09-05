@@ -1,119 +1,123 @@
-/* =========================================================================
-   posts.js: the list of every journal post.
-
-   TO ADD A NEW POST:
-     1. Copy posts/_template.html to posts/your-slug.html and write it.
-     2. Add one object to the TOP of the POSTS array below.
-     3. Keep "date" in YYYY-MM-DD format. The site sorts newest first
-        automatically, so the order you type them in does not matter.
-     4. Set "draft: true" while a post is still an outline. Delete that
-        line (or set it to false) once the post is finished.
-
-   That is the whole process. You only ever edit this one file plus the
-   new post page. Home and Journal both read from this list.
-
-   HIDDEN POSTS: anything not listed in POSTS does not appear on the site.
-   Unfinished drafts are commented out at the bottom of the array. When you
-   finish one, move its entry up out of the comment block.
-   ========================================================================= */
-
+// Published entries. Run python3 scripts/refresh.py after editing.
 var POSTS = [
   {
-    title: "Pfizer Wasn't Special. I Tested 45 Deals to Find Out.",
-    date: "2026-08-31",
-    url: "posts/cash-vs-stock-45-deals.html",
-    excerpt:
-      "I found the same cash-versus-stock pattern in Pfizer's deal history. So I built a real market-wide sample from scratch to see if it holds, and caught something else along the way that mattered more."
+    "title": "Cash vs. Stock: What I Found in 45 Acquisitions",
+    "updated": "2026-09-05",
+    "revision": "Added the actual sample counts for each window, confidence intervals, and downloadable original and corrected data. Clarified that eleven of the twelve selected entries had reported financing checks, removed the unconfirmed 54% filtering figure, and narrowed the conclusions. The previously published group means and gap p-values are unchanged.",
+    "date": "2026-08-31",
+    "url": "posts/cash-vs-stock-45-deals.html",
+    "excerpt": "A comparison of cash- and stock-funded acquisitions, and the classification error that made me revisit the sample.",
+    "topic": "Research",
+    "readingMinutes": 4
   },
   {
-    title: "I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.",
-    date: "2026-08-27",
-    url: "posts/i-built-a-tool-to-grade-memecoins.html",
-    excerpt:
-      "I built a screener that grades memecoin contracts out of 100, then spent a month attacking it to find out what the letter is actually worth. Part of the score fell for a few dollars. Another check turned out to be beaten by default. The most useful thing I did was kill three fixes before building them."
+    "title": "A Month Testing My Memecoin Screener",
+    "date": "2026-08-27",
+    "url": "posts/i-built-a-tool-to-grade-memecoins.html",
+    "excerpt": "Building a memecoin screener, testing where its score could be manipulated, and deciding which proposed fixes to reject.",
+    "topic": "Research",
+    "readingMinutes": 8
   },
   {
-    title: "What I Learned From a PE Managing Partner Who Bet on One Sector",
-    date: "2026-07-18",
-    url: "posts/pe-managing-partner-bet-on-one-sector.html",
-    excerpt:
-      "Notes from a coffee chat with a middle market aerospace and defense PE Managing Partner on why sector specialization beats staying generalist."
+    "title": "Why One PE Investor Sticks to Aerospace and Defense",
+    "date": "2026-07-18",
+    "url": "posts/pe-managing-partner-bet-on-one-sector.html",
+    "excerpt": "A conversation about sector specialization in aerospace and defense private equity.",
+    "topic": "Field Notes",
+    "readingMinutes": 4
   },
   {
-    title: "Pfizer Buys Its Growth. I Checked If the Market Buys It.",
-    date: "2026-07-07",
-    url: "posts/pfizer-buys-its-growth.html",
-    excerpt:
-      "Pfizer replaces its patent cliff by buying other companies. I ran a market-model event study on 23 years of its deals to see whether the market rewards the strategy. The average said nothing. The split said everything."
+    "title": "How the Market Reacted to Pfizer’s Acquisitions",
+    "updated": "2026-09-05",
+    "revision": "Clarified what abnormal returns measure, the limits of the small sample, and how Wyeth’s mixed financing is grouped. Added a note about the unavailable original code and price data. The reported deal returns are unchanged.",
+    "date": "2026-07-07",
+    "url": "posts/pfizer-buys-its-growth.html",
+    "excerpt": "An event study of eleven Pfizer acquisitions. Payment types showed different returns, but the small sample leaves uncertainty.",
+    "topic": "Research",
+    "readingMinutes": 5
   },
   {
-    title: "Doing the Math on the 100-Hour Week",
-    date: "2026-07-04",
-    url: "posts/doing-the-math-on-the-100-hour-week.html",
-    excerpt:
-      "I said the notorious hours did not scare me, so I checked what I was actually claiming. What first-year bankers really work, what it really pays per hour, and the question I should have asked instead."
+    "title": "Doing the Math on the 100-Hour Week",
+    "date": "2026-07-04",
+    "url": "posts/doing-the-math-on-the-100-hour-week.html",
+    "excerpt": "Checking my assumptions about junior bankers' hours, compensation, and the tradeoffs of the job.",
+    "topic": "Field Notes",
+    "readingMinutes": 4
   },
   {
-    title: "How I'd Run My Own Firm",
-    date: "2026-06-26",
-    url: "posts/how-id-run-my-own-firm.html",
-    excerpt:
-      "The investment methodology I'd actually run, built from three distinctions about how the industry works and two tools I coded myself. Honest about what I can and can't yet claim."
+    "title": "How I'd Run My Own Firm",
+    "date": "2026-06-26",
+    "url": "posts/how-id-run-my-own-firm.html",
+    "excerpt": "A proposed investment approach, two tools I built, and the parts I have yet to test.",
+    "topic": "Research",
+    "readingMinutes": 11
   },
   {
-    title: "The Rule Doesn't Care What You Want: Backtesting Crude Oil",
-    date: "2026-06-23",
-    url: "posts/the-rule-doesnt-care-what-you-want.html",
-    excerpt:
-      "I backtested the golden cross moving-average rule on eighteen years of real crude oil futures in Python. It lost to simply buying and holding. An honest look at why removing judgment did not produce a better outcome."
+    "title": "Backtesting a Moving-Average Rule on Crude Oil",
+    "date": "2026-06-23",
+    "url": "posts/the-rule-doesnt-care-what-you-want.html",
+    "excerpt": "Testing a moving-average rule on eighteen years of crude oil futures data, and examining why it lagged buy-and-hold.",
+    "topic": "Research",
+    "readingMinutes": 3
   },
   {
-    title: "An Autopsy of a Losing Book: What My Gold Trades Taught Me",
-    date: "2026-06-22",
-    url: "posts/an-autopsy-of-a-losing-book.html",
-    excerpt:
-      "A quantitative post-mortem of my gold paper-trading account, built in Python: thirteen trades, a negative expectancy, and a directional blind spot I could only see once I looked at the data."
+    "title": "Looking Back at My Losing Gold Trades",
+    "updated": "2026-09-05",
+    "revision": "Revised the interpretation to separate the results of thirteen simulated trades from claims about a lasting trading weakness. Clarified that the original trade-pairing code is unavailable. The reported trade counts and dollar amounts are unchanged.",
+    "date": "2026-06-22",
+    "url": "posts/an-autopsy-of-a-losing-book.html",
+    "excerpt": "Thirteen simulated gold trades, a losing account, and the limits of what a directional breakdown can explain.",
+    "topic": "Trading Journal",
+    "readingMinutes": 2
   },
   {
-    title: "Turning \"don't put all your eggs in one basket\" into actual math",
-    date: "2026-06-22",
-    url: "posts/turning-eggs-in-one-basket-into-math.html",
-    excerpt:
-      "I wanted the real math behind not putting all your eggs in one basket, so I built Markowitz's portfolio model myself with five years of market data. What the chart proved, and the bugs that taught me more than the math."
+    "title": "Putting Diversification Into Numbers",
+    "date": "2026-06-22",
+    "url": "posts/turning-eggs-in-one-basket-into-math.html",
+    "excerpt": "Building a five-year portfolio model and tracing the bugs behind the first version of the chart.",
+    "topic": "Research",
+    "readingMinutes": 4
   },
   {
-    title: "What trading and investing have each taught me",
-    date: "2026-06-22",
-    url: "posts/what-trading-and-investing-have-taught-me.html",
-    excerpt:
-      "I trade NQ futures and hold index funds at the same time. How the two pull on the same instinct, where they actually differ, and which type of money belongs in each."
+    "title": "What trading and investing have each taught me",
+    "date": "2026-06-22",
+    "url": "posts/what-trading-and-investing-have-taught-me.html",
+    "excerpt": "What I have learned from futures trading and holding index funds, and how I think about their different purposes.",
+    "topic": "Trading Journal",
+    "readingMinutes": 3
   },
   {
-    title: "The career I almost wrote off",
-    date: "2026-06-22",
-    url: "posts/the-career-i-almost-wrote-off.html",
-    excerpt:
-      "A bored eighth grader's Google search turned into a real interest in investment banking and M&A. How that happened, and where I honestly stand on it now."
+    "title": "The career I almost wrote off",
+    "date": "2026-06-22",
+    "url": "posts/the-career-i-almost-wrote-off.html",
+    "excerpt": "How an early search about finance developed into an interest in investment banking and M&A.",
+    "topic": "Field Notes",
+    "readingMinutes": 3
   },
   {
-    title: "What cold outreach actually taught me",
-    date: "2026-06-21",
-    url: "posts/what-cold-outreach-taught-me.html",
-    excerpt:
-      "I spent part of June cold emailing finance professionals around Charleston. What the silence taught me, what made the few replies land, and why one yes was enough."
+    "title": "What cold outreach actually taught me",
+    "date": "2026-06-21",
+    "url": "posts/what-cold-outreach-taught-me.html",
+    "excerpt": "Cold emailing finance professionals in Charleston: the silence, the replies, and what I learned from one yes.",
+    "topic": "Field Notes",
+    "readingMinutes": 2
   },
   {
-    title: "The trade I managed well and still lost",
-    date: "2026-06-20",
-    url: "posts/what-a-bad-trade-taught-me.html",
-    excerpt:
-      "On April 8 I went long into a brutal sell-off, managed the trade by the book, and still lost. Why the entry was the real mistake, not the management."
+    "title": "The trade I managed well and still lost",
+    "date": "2026-06-20",
+    "url": "posts/what-a-bad-trade-taught-me.html",
+    "excerpt": "Revisiting an April 8 entry during a sell-off and separating the entry decision from trade management.",
+    "topic": "Trading Journal",
+    "readingMinutes": 2
   },
   {
-    title: "What I actually learned building my first mock financial plan",
-    date: "2026-06-19",
-    url: "posts/first-mock-financial-plan.html",
-    excerpt:
-      "My first real assignment interning at Integritas Wealth Strategies: a full mock plan for a couple in debt with very high goals. What was harder than I expected, and the lesson that stuck."
+    "title": "My First Mock Financial Plan",
+    "updated": "2026-09-05",
+    "revision": "Clarified that this was a fictional family’s case-study plan completed during my shadowing experience.",
+    "date": "2026-06-19",
+    "url": "posts/first-mock-financial-plan.html",
+    "excerpt": "Working through a mock couple's debt, goals, and budget in RightCapital during my shadowing experience.",
+    "topic": "Field Notes",
+    "readingMinutes": 2
   }
 ];

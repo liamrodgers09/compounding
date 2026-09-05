@@ -1,6 +1,6 @@
 /* =========================================================================
    main.js: the only script that runs the site.
-   Jobs: the light/dark theme toggle, the mobile menu toggle, the "Current"
+   Jobs: the mobile menu toggle, the "Current"
    menu and status block, and rendering the post lists. Plain vanilla JS.
    ========================================================================= */
 
@@ -15,97 +15,11 @@
      ===================================================================== */
   var CURRENT = {
     researching:
-      "An event study on acquirer returns around M&A announcements, the one I promised to send a PE managing partner when it is finished",
+      "Acquirer returns around M&A announcements. The published studies are linked below.",
     reading: "When Genius Failed, by Roger Lowenstein",
     question:
       "Is the private equity seat at the end of the banking track actually the job I think it is?"
   };
-
-  /* ---------- Theme toggle (light / dark) ----------------------------- */
-  // The theme itself is applied before paint by a small inline script in each
-  // page's <head>. Here we add the toggle button and remember the choice.
-  var root = document.documentElement;
-  var themeButton = null;
-
-  var prefersReducedMotion =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Briefly enable a global color transition so the light/dark switch
-  // cross-fades instead of snapping. Skipped when reduced motion is on.
-  var themeAnimTimer = null;
-  function smoothThemeChange() {
-    if (prefersReducedMotion) return;
-    root.classList.add("theme-anim");
-    if (themeAnimTimer) clearTimeout(themeAnimTimer);
-    themeAnimTimer = setTimeout(function () {
-      root.classList.remove("theme-anim");
-    }, 360);
-  }
-
-  function currentTheme() {
-    return root.getAttribute("data-theme") === "dark" ? "dark" : "light";
-  }
-
-  function applyTheme(theme, persist) {
-    if (theme === "dark") {
-      root.setAttribute("data-theme", "dark");
-    } else {
-      root.removeAttribute("data-theme");
-    }
-    if (persist) {
-      try {
-        localStorage.setItem("theme", theme);
-      } catch (e) {}
-    }
-    if (themeButton) {
-      var dark = theme === "dark";
-      themeButton.setAttribute("aria-pressed", dark ? "true" : "false");
-      themeButton.setAttribute(
-        "aria-label",
-        dark ? "Switch to light theme" : "Switch to dark theme"
-      );
-    }
-  }
-
-  var MOON =
-    '<svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
-  var SUN =
-    '<svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="2.6" x2="12" y2="5.1"/><line x1="12" y1="18.9" x2="12" y2="21.4"/><line x1="2.6" y1="12" x2="5.1" y2="12"/><line x1="18.9" y1="12" x2="21.4" y2="12"/><line x1="5.1" y1="5.1" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="18.9" y2="18.9"/><line x1="5.1" y1="18.9" x2="6.9" y2="17.1"/><line x1="17.1" y1="6.9" x2="18.9" y2="5.1"/></g></svg>';
-
-  var headerInner = document.querySelector(".site-header__inner");
-  if (headerInner) {
-    themeButton = document.createElement("button");
-    themeButton.className = "theme-toggle";
-    themeButton.type = "button";
-    themeButton.title = "Toggle light and dark theme";
-    themeButton.innerHTML = MOON + SUN;
-
-    var navToggleEl = headerInner.querySelector(".nav-toggle");
-    if (navToggleEl) {
-      headerInner.insertBefore(themeButton, navToggleEl);
-    } else {
-      headerInner.appendChild(themeButton);
-    }
-
-    applyTheme(currentTheme(), false); // sync the button to the active theme
-    themeButton.addEventListener("click", function () {
-      smoothThemeChange();
-      applyTheme(currentTheme() === "dark" ? "light" : "dark", true);
-    });
-  }
-
-  // Follow the system setting live, unless the visitor has chosen a theme
-  try {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", function (event) {
-        if (!localStorage.getItem("theme")) {
-          smoothThemeChange();
-          applyTheme(event.matches ? "dark" : "light", false);
-        }
-      });
-  } catch (e) {}
 
   /* ---------- Mobile navigation toggle -------------------------------- */
   var toggle = document.querySelector(".nav-toggle");
@@ -126,13 +40,19 @@
     });
   }
 
+  if (toggle && nav) {
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && nav.classList.contains("is-open")) { nav.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); toggle.focus(); }
+    });
+  }
+
   /* ---------- "Current" page: nav link + the list of what I'm doing ---- */
   // Built from the CURRENT object at the top. The nav link goes to its own
   // page (current.html), which lists every facet that has text.
   var CURRENT_FACETS = [
     { key: "researching", line: "Currently researching" },
-    { key: "reading", line: "Currently reading" },
-    { key: "question", line: "Current question" }
+    { key: "reading", line: "Last recorded reading" },
+    { key: "question", line: "A question from my journal" }
   ];
 
   var currentFilled = CURRENT_FACETS.filter(function (facet) {
@@ -197,7 +117,7 @@
   }
 
   function sortedPosts() {
-    return POSTS.slice().sort(function (a, b) {
+    return POSTS.filter(function (post) { return !post.draft; }).sort(function (a, b) {
       return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
     });
   }
@@ -211,6 +131,8 @@
       '<time datetime="' + escapeHtml(post.date) + '">' +
       escapeHtml(formatDate(post.date)) +
       "</time>" + tag +
+      (post.topic ? "<span>" + escapeHtml(post.topic) + "</span>" : "") +
+      (post.readingMinutes ? "<span>" + post.readingMinutes + " min read</span>" : "") +
       "</p>" +
       '<h3 class="card__title">' + escapeHtml(post.title) + "</h3>" +
       '<p class="card__excerpt">' + escapeHtml(post.excerpt) + "</p>" +
@@ -235,145 +157,34 @@
   render("recent-posts", 3); // home page, three most recent
   render("all-posts", 0);    // journal page, everything
 
-  /* ---------- Motion: scroll-reveal with a subtle stagger ------------- */
-  // Sections, cards, and images fade and rise as they enter the viewport.
-  // Progressive enhancement: without JS (or with reduced motion) nothing is
-  // hidden, so all content shows normally. We only toggle opacity/transform,
-  // and each element is unobserved once revealed.
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
-    var revealEls = Array.prototype.slice
-      .call(
-        document.querySelectorAll(
-          ".section__head, .card, .post__figure, .post__image, .book, .contact-item, #current-list .current-item, .prose"
-        )
-      )
-      .filter(function (el) {
-        // an image already inside a revealing figure shouldn't double up
-        return !(
-          el.classList.contains("post__image") && el.closest(".post__figure")
-        );
+  var filters = document.getElementById("topic-filters");
+  if (filters && typeof POSTS !== "undefined") {
+    var topics = ["All", "Research", "Trading Journal", "Field Notes"];
+    var initialTopic = new URLSearchParams(location.search).get("topic");
+    function filterPosts(topic, updateUrl) {
+      var list = sortedPosts().filter(function (post) { return topic === "All" || post.topic === topic; });
+      document.getElementById("all-posts").innerHTML = list.map(cardHtml).join("");
+      document.getElementById("post-count").textContent = list.length + (list.length === 1 ? " post" : " posts");
+      filters.querySelectorAll("button").forEach(function (button) {
+        button.setAttribute("aria-pressed", String(button.textContent === topic));
       });
-
-    revealEls.forEach(function (el) {
-      el.classList.add("reveal");
-      // stagger items that share a parent (e.g. cards within a list)
-      var prev = el.previousElementSibling;
-      var i = 0;
-      while (prev) {
-        if (prev.classList && prev.classList.contains("reveal")) i++;
-        prev = prev.previousElementSibling;
+      if (updateUrl) {
+        var url = new URL(location.href);
+        if (topic === "All") url.searchParams.delete("topic");
+        else url.searchParams.set("topic", topic);
+        history.replaceState(null, "", url);
       }
-      var delay = Math.min(i, 6) * 65;
-      if (delay) el.style.animationDelay = delay + "ms";
+    }
+    topics.forEach(function (topic) {
+      var button = document.createElement("button");
+      button.type = "button"; button.className = "topic-filter"; button.textContent = topic;
+      button.addEventListener("click", function () { filterPosts(topic, true); });
+      filters.appendChild(button);
     });
-
-    var revealObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
-    );
-
-    revealEls.forEach(function (el) {
-      revealObserver.observe(el);
-    });
+    var readingLink = document.createElement("a");
+    readingLink.href = "reading-list.html"; readingLink.className = "topic-filter"; readingLink.textContent = "Reading notes ↗";
+    filters.appendChild(readingLink);
+    filterPosts(topics.indexOf(initialTopic) >= 0 ? initialTopic : "All", false);
   }
 
-  /* ---------- Homepage hero: cinematic opener ------------------------- */
-  // Runs only on the homepage (the .hero exists nowhere else) and only with
-  // motion enabled. The arc draws itself in like a pen stroke, then the hero
-  // content builds in a short stagger, overlapping the tail of the draw.
-  // Progressive enhancement: no JS or reduced motion shows the final state.
-  var hero = document.querySelector(".hero");
-  if (hero && !prefersReducedMotion) {
-    var curvePath = hero.querySelector(".hero__curve path");
-    var curveDot = hero.querySelector(".hero__curve circle");
-
-    // Deliberate build order, independent of DOM order: label, byline,
-    // headline, paragraph, second paragraph, buttons.
-    var heroSeq = [
-      hero.querySelector(".eyebrow"),
-      hero.querySelector(".card__meta"),
-      hero.querySelector(".hero__title"),
-      hero.querySelector(".hero__lead"),
-      hero.querySelector(".hero__sub"),
-      hero.querySelector(".hero__actions")
-    ].filter(Boolean);
-
-    // Returns the arc (line + dot) to its natural, fully-drawn, fully-visible
-    // state by dropping the inline dash styles. This is the guaranteed-visible
-    // end state. JS is used ONLY to animate the arc, never to make it visible:
-    // the default (no dash) is already fully drawn, so if anything below fails
-    // the arc still shows.
-    var settleArcVisible = function () {
-      if (curvePath) {
-        curvePath.style.strokeDasharray = "";
-        curvePath.style.strokeDashoffset = "";
-      }
-      if (curveDot) curveDot.style.opacity = "1";
-    };
-
-    // Measure the path. If we cannot, we simply never hide it (it stays in its
-    // visible default and only the content stagger plays).
-    var arcLen = 0;
-    if (curvePath && typeof curvePath.getTotalLength === "function") {
-      try {
-        arcLen = curvePath.getTotalLength();
-      } catch (e) {
-        arcLen = 0;
-      }
-    }
-    var animateArc = !!(curvePath && arcLen > 0);
-
-    // Hide the arc BEFORE the transition is armed, so it hides instantly
-    // instead of animating itself away.
-    if (animateArc) {
-      curvePath.style.strokeDasharray = arcLen;
-      curvePath.style.strokeDashoffset = arcLen;
-    }
-
-    // Arm the cinematic styles: arc transition on, hero content hidden.
-    heroSeq.forEach(function (el) {
-      el.classList.add("hero__seq");
-    });
-    hero.classList.add("cinematic");
-
-    // Flush styles so the primed/hidden state is the transition's start point.
-    void hero.getBoundingClientRect();
-
-    // FAIL-SAFE: no matter what happens with the transition (it never fires,
-    // the tab was backgrounded, an exception is thrown), the arc is guaranteed
-    // fully visible shortly after load. Scheduled before the draw starts so it
-    // always runs.
-    var arcSafety = setTimeout(settleArcVisible, 2600);
-
-    // Draw the line in. When it finishes, settle to the clean default state.
-    if (animateArc) {
-      curvePath.addEventListener(
-        "transitionend",
-        function (e) {
-          if (e.propertyName === "stroke-dashoffset") {
-            clearTimeout(arcSafety);
-            settleArcVisible();
-          }
-        },
-        { once: true }
-      );
-      curvePath.style.strokeDashoffset = "0";
-    }
-    if (curveDot) curveDot.style.opacity = "1"; // dot fades in (CSS delay)
-
-    var startAt = 1000; // begin partway through the ~1.7s line draw
-    var step = 140; // stagger between elements
-    heroSeq.forEach(function (el, i) {
-      setTimeout(function () {
-        el.classList.add("is-in");
-      }, startAt + i * step);
-    });
-  }
 })();
