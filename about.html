@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>About · Compounding</title>
-  <meta name="description" content="Liam Rodgers, a junior in Charleston SC interested in investment banking, hedge fund trading, private equity, and wealth management, currently shadowing a CFP and trading real positions." />
+<title>About · Compounding</title>
+  <meta name="description" content="Liam Rodgers, a high school junior in Charleston, exploring finance through research, mock planning, and conversations with professionals." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="favicons/favicon.svg" type="image/svg+xml" />
@@ -32,9 +17,9 @@
   <meta property="og:site_name" content="Compounding" />
   <meta property="og:url" content="https://compoundingwithliam.com/about.html" />
   <meta property="og:title" content="About" />
-  <meta property="og:description" content="Liam Rodgers, a junior in Charleston SC interested in investment banking, hedge fund trading, private equity, and wealth management, currently shadowing a CFP and trading real positions." />
+  <meta property="og:description" content="Liam Rodgers, a high school junior in Charleston, exploring finance through research, mock planning, and conversations with professionals." />
   <meta name="twitter:title" content="About" />
-  <meta name="twitter:description" content="Liam Rodgers, a junior in Charleston SC interested in investment banking, hedge fund trading, private equity, and wealth management, currently shadowing a CFP and trading real positions." />
+  <meta name="twitter:description" content="Liam Rodgers, a high school junior in Charleston, exploring finance through research, mock planning, and conversations with professionals." />
 
   <meta property="og:image" content="https://compoundingwithliam.com/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -45,7 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="feed.xml" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -88,46 +74,40 @@
     </section>
 
     <section class="section">
+      <div class="container about-intro">
+        <div class="prose">
+          <p>I'm Liam Rodgers, a high school junior in Charleston, South Carolina. I'm interested in how people make financial decisions, from a family's budget to a company's acquisition.</p>
+          <p>I've been exploring that through shadowing a Certified Financial Planner, building a mock plan in RightCapital, writing research tools in Python, and talking with people across finance.</p>
+          <p>I called this site Compounding because I want to see what consistent study adds up to. Writing gives me something to revisit: what I thought, what I tested, and where I need to look again.</p>
+          <p>Start with my <a href="posts/cash-vs-stock-45-deals.html">acquisition study</a>, the <a href="posts/an-autopsy-of-a-losing-book.html">review of my paper-trading account</a>, or my <a href="posts/first-mock-financial-plan.html">first mock financial plan</a>.</p>
+          <p>You can find me on <a href="https://www.linkedin.com/in/liam-rodgers-90b6713ab/" target="_blank" rel="noopener">LinkedIn</a> or through the <a href="contact.html">contact page</a>.</p>
+        </div>
+        <figure class="about-photo about-portrait">
+          <a href="images/about/travel.jpg" aria-label="View the full family travel photo"><img src="images/about/travel.jpg" width="1200" height="1600" alt="Liam and a family member on swings overlooking Athens" /></a>
+          <figcaption>Traveling with family.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section about-interests" aria-labelledby="outside-finance">
       <div class="container">
         <div class="prose">
-          <p>
-            I'm using high school to get real exposure to finance instead of
-            waiting until college to start. Right now, that means shadowing a
-            Certified Financial Planner, building real financial plans, trading
-            real positions in the market, and reaching out directly to
-            professionals across investment banking, private equity, hedge funds,
-            and wealth management to learn from people actually doing the work.
-          </p>
-          <p>
-            I named this site Compounding because the idea means more to me than
-            just interest accumulating in an account. The same principle applies
-            to knowledge, habits, and decision-making. Small, consistent effort,
-            repeated over time, builds into something much bigger than any single
-            day of it would suggest. That's true of a portfolio, and it's just as
-            true of understanding markets, building discipline, or getting better
-            at making decisions under uncertainty.
-          </p>
-          <p>
-            I'm not trying to present myself as an expert, because I'm not one
-            (yet). My goal with this site is to build a real understanding of
-            finance over time by reading, researching, trading, and writing about
-            what I actually take away from each of those. The point isn't to
-            sound impressive today, it's to have an honest record of how my
-            thinking develops.
-          </p>
-          <p>
-            This site is where I keep that record. I learn something, I write it
-            down, and over time I get to see how my thinking actually changes
-            instead of just assuming it has. My longer goal is a strong business
-            school application and a career in finance, and this is part of how I
-            get there, but the real value of it is having an honest account of
-            how I got from not knowing something to understanding it.
-          </p>
-          <p>
-            If you want to connect, I'm on
-            <a href="https://www.linkedin.com/in/liam-rodgers-90b6713ab/" target="_blank" rel="noopener">LinkedIn</a>,
-            and you can reach me on the <a href="contact.html">contact page</a>.
-          </p>
+          <h2 id="outside-finance">Outside of finance</h2>
+          <p>I play volleyball, lacrosse, and golf, and I love traveling with my family. Here are a few photos from that side of my life.</p>
+        </div>
+        <div class="about-gallery">
+          <figure class="about-photo">
+            <a href="images/about/volleyball.jpg" aria-label="View the full volleyball photo"><img src="images/about/volleyball.jpg" width="1200" height="1600" loading="lazy" alt="Liam jumping to serve a volleyball in a school gym" /></a>
+            <figcaption>Volleyball.</figcaption>
+          </figure>
+          <figure class="about-photo">
+            <a href="images/about/lacrosse.jpg" aria-label="View the full lacrosse photo"><img src="images/about/lacrosse.jpg" width="1536" height="1024" loading="lazy" alt="Two lacrosse teammates in helmets and gear on a field at night" /></a>
+            <figcaption>Lacrosse.</figcaption>
+          </figure>
+          <figure class="about-photo">
+            <a href="images/about/golf.jpg" aria-label="View the full golf photo"><img src="images/about/golf.jpg" width="738" height="1600" loading="lazy" alt="Liam lining up a shot from a golf tee" /></a>
+            <figcaption>Golf.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -142,13 +122,14 @@
           <li><a href="reading-list.html">Reading List</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

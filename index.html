@@ -1,25 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>Compounding · A finance learning journal by Liam Rodgers</title>
-  <meta name="description" content="A running record of what I am learning about finance in real time: shadowing a financial advisor, building real plans, and trading my own positions. By Liam Rodgers, Charleston SC." />
+<title>Compounding · A finance learning journal by Liam Rodgers</title>
+  <meta name="description" content="Liam Rodgers’s journal about learning finance, acquisition research, trading, and mock financial planning. Written in Charleston, South Carolina." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="favicons/favicon.ico" sizes="any" />
   <link rel="icon" href="favicons/favicon.svg" type="image/svg+xml" />
@@ -45,7 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="feed.xml" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -85,22 +71,10 @@
         <p class="eyebrow">A learning journal</p>
         <h1 class="hero__title">Compounding</h1>
         <p class="card__meta">by Liam Rodgers</p>
-        <p class="hero__lead">
-          I'm Liam Rodgers, a junior in Charleston, South Carolina.
-          Compounding started from a simple idea: that small, consistent effort
-          works the same way in markets as it does in knowledge and judgment,
-          quietly building into something much bigger than it looks day to day.
-          This is where I'm testing that idea on myself, real shadowing, real
-          trades, real conversations with people already doing this work, written
-          down as I go so I can actually watch my own thinking change over time.
-        </p>
-        <p class="hero__sub">
-          This is not a list of budgeting tips. It is a running record of what I
-          get right, what I get wrong, and the conversations that change how I
-          think. I write things down here while they are still fresh.
-        </p>
+        <p class="hero__lead">I'm Liam Rodgers, a high school junior in Charleston, South Carolina, learning finance through research, mock financial planning, and conversations with people in the field.</p>
+        <p class="hero__sub">Here I keep the projects, mistakes, and questions that help me understand it.</p>
         <div class="hero__actions">
-          <a class="button" href="journal.html">Read the journal</a>
+          <a class="button" href="#selected-work">Explore my work</a>
           <a class="button button--ghost" href="about.html">About me</a>
         </div>
       </div>
@@ -111,6 +85,28 @@
       </svg>
     </section>
 
+    <section class="section selected-section" id="selected-work" aria-labelledby="selected-title">
+      <div class="container">
+        <div class="section__head"><h2 class="section__title" id="selected-title">Start here</h2><span class="section__note">Three ways into the journal</span></div>
+        <div class="featured-grid">
+          <article class="featured"><a href="posts/cash-vs-stock-45-deals.html">
+            <p class="eyebrow">01 / Research</p><h3>Testing a pattern across 45 acquisitions</h3>
+            <div class="featured__note"><span>Inside the sample</span><p>45 candidate events.<br>37 observations in the tightest window.</p></div>
+            <p>A cash-versus-stock comparison, and the classification error that made me check the data.</p><span class="card__cta">Read the study &#8594;</span>
+          </a></article>
+          <article class="featured"><a href="posts/an-autopsy-of-a-losing-book.html">
+            <p class="eyebrow">02 / Trading journal</p><h3>Looking closely at a losing account</h3>
+            <img src="images/gold-trading-analysis.png" width="1950" height="1200" alt="Dashboard of thirteen simulated gold trades" />
+            <p>Thirteen simulated gold trades. A useful breakdown, with limits on what it can tell me.</p><span class="card__cta">Read the reflection &#8594;</span>
+          </a></article>
+          <article class="featured"><a href="posts/first-mock-financial-plan.html">
+            <p class="eyebrow">03 / Field notes</p><h3>Building my first mock financial plan</h3>
+            <div class="featured__note"><span>From the planning desk</span><p>A budget can work on paper and still be hard to live with.</p></div>
+            <p>Working through debt, family goals, and unfamiliar software during my shadowing experience.</p><span class="card__cta">Read the field note &#8594;</span>
+          </a></article>
+        </div>
+      </div>
+    </section>
     <section class="section">
       <div class="container">
         <div class="section__head">
@@ -119,13 +115,7 @@
         </div>
 
         <div class="card-list" id="recent-posts">
-          <noscript>
-            <ul class="plainlist">
-              <li><a href="posts/cash-vs-stock-45-deals.html">Pfizer Wasn't Special. I Tested 45 Deals to Find Out.</a></li>
-              <li><a href="posts/i-built-a-tool-to-grade-memecoins.html">I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.</a></li>
-              <li><a href="posts/pe-managing-partner-bet-on-one-sector.html">What I Learned From a PE Managing Partner Who Bet on One Sector</a></li>
-            </ul>
-          </noscript>
+          <noscript><ul class="plainlist"><li><a href="posts/cash-vs-stock-45-deals.html">Cash vs. Stock: What I Found in 45 Acquisitions</a></li><li><a href="posts/i-built-a-tool-to-grade-memecoins.html">A Month Testing My Memecoin Screener</a></li><li><a href="posts/pe-managing-partner-bet-on-one-sector.html">Why One PE Investor Sticks to Aerospace and Defense</a></li></ul></noscript>
         </div>
       </div>
     </section>
@@ -140,14 +130,15 @@
           <li><a href="reading-list.html">Reading List</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="assets/js/posts.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/posts.js?v=20260905"></script>
+  <script src="assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

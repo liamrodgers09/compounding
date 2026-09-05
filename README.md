@@ -1,8 +1,7 @@
 # Compounding
 
 A personal finance learning journal. A running record of what I am learning by
-shadowing a financial advisor, building real plans, and trading my own
-positions. Plain HTML, CSS, and a little vanilla JavaScript. No frameworks, no
+shadowing a financial advisor, working on mock plans, and reviewing trading decisions. Plain HTML, CSS, and a little vanilla JavaScript. No frameworks, no
 build step.
 
 ## Run it locally
@@ -20,8 +19,8 @@ python3 -m http.server 8000
 ## File map
 
 ```
-index.html            Home: intro plus the three most recent posts
-about.html            Short bio
+index.html            Home: intro, three featured projects, and recent posts
+about.html            Bio and personal photos
 journal.html          List of every post, newest first
 contact.html          LinkedIn and email, nothing else
 posts/
@@ -47,23 +46,20 @@ assets/
 
    ```js
    {
-     title: "My first options trade",
-     date: "2026-07-02",            // YYYY-MM-DD, sorts newest first on its own
-     url: "posts/my-first-options-trade.html",
-     excerpt: "One sentence that makes someone want to read it.",
-     draft: true                    // remove this line once it is finished
+     "title": "My first options trade",
+     "date": "2026-07-02",
+     "url": "posts/my-first-options-trade.html",
+     "excerpt": "One sentence that makes someone want to read it.",
+     "topic": "Trading Journal",
+     "draft": true
    },
    ```
 
-That is the whole process. Home and Journal both read from `posts.js`, so you
-never edit those pages by hand.
+Keep the list as valid JSON after `var POSTS =`, using quoted keys and no inline comments. Remove `draft` when ready, then run `python3 scripts/refresh.py`. This synchronizes titles, reading times, related reading, revision notes, RSS, and the lists shown without JavaScript. Also update the new page's canonical URL and social descriptions, and add its URL to `sitemap.xml`. The three featured homepage projects are curated separately in `index.html`.
 
 ## Editing the things marked as placeholders
 
-- **Draft posts.** The three starter posts are outlines only. Each one has
-  notes in brackets like `[Liam to fill in ...]`. Replace those with the real
-  story before you publish, and remove the draft callout and the
-  `draft: true` line in `posts.js`.
+- **Draft posts.** Replace all template placeholders before publishing. Draft flags hide entries from lists and RSS, but uploaded HTML is still publicly accessible by its URL. Keep private drafts outside the published repository.
 - **LinkedIn URL.** Set to your profile in both `about.html` and
   `contact.html`. Update both if it ever changes.
 - **Contact email.** Currently `rodgersliam66@gmail.com` in `contact.html`.
@@ -77,25 +73,7 @@ up the new accent color.
 
 ## Deploy to GitHub Pages
 
-1. Create a new repository on GitHub and push these files to it:
-
-   ```bash
-   git init
-   git add .
-   git commit -m "Compounding: initial site"
-   git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
-   git push -u origin main
-   ```
-
-2. On GitHub, go to the repository, then **Settings**, then **Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**,
-   choose the `main` branch and the `/ (root)` folder, and save.
-4. Wait a minute, then your site is live at
-   `https://YOUR-USERNAME.github.io/YOUR-REPO/`.
-
-To publish a new post later, commit and push the new files and it updates
-automatically.
+The existing repository is `liamrodgers09/compounding`. Publish approved changes to its `main` branch, then check the GitHub Pages deployment and `https://compoundingwithliam.com`. Keep `CNAME` and `.nojekyll` intact.
 
 ## House rules for the writing
 
@@ -105,3 +83,17 @@ automatically.
 - Never invent quotes, numbers, or stories. If something is not written yet,
   leave a clear `[Liam to fill in ...]` placeholder.
 - Do not use anyone's name without confirming it is okay with them first.
+
+
+## September editorial update
+
+Run `python3 scripts/refresh.py` after editing articles or `assets/js/posts.js`. It refreshes reading-time estimates, related reading, and `feed.xml`. The static site still needs no build server or framework. RSS works with feed readers; it is not an email subscription.
+
+Set a post's `topic` to Research, Trading Journal, or Field Notes. Reading notes remain on the Reading List page. Homepage selected work is deliberately curated in `index.html`. The Journal filters use a shareable `?topic=` URL. Draft entries are excluded from rendered lists and RSS.
+
+Research download files under `research/acquisitions/` reproduce statistics from saved returns only. They do not reconstruct the original collection or pricing pipeline. Keep original and derived data separate.
+
+## Appearance
+The site uses a single navy palette. The theme switcher and preference scripts were removed. Homepage selections retain the three featured project cards; no entrance animations are applied.
+
+For substantive corrections, add `updated` (YYYY-MM-DD) and `revision` (a factual summary of what changed) to the post entry and run the refresh script. Keep the original publication date.

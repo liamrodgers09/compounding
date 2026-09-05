@@ -1,24 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    (function () {
-      try {
-        var t =
-          localStorage.getItem("theme") ||
-          (window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (t === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      } catch (e) {}
-    })();
-  </script>
-  <title>Journal · Compounding</title>
+<title>Journal · Compounding</title>
   <meta name="description" content="Every post, newest first. Each one is something I actually did or thought about while learning finance, not general advice." />
   <meta name="theme-color" content="#15243b" />
   <link rel="icon" href="favicons/favicon.ico" sizes="any" />
@@ -45,7 +30,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260905" />
+<link rel="alternate" type="application/rss+xml" title="Compounding RSS" href="feed.xml" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -83,35 +69,18 @@
     <section class="page-head">
       <div class="container">
         <p class="eyebrow">Journal</p>
-        <h1 class="page-head__title">Everything I have written down</h1>
+        <h1 class="page-head__title">The journal</h1>
         <p class="page-head__lead">
-          Newest first. Each post is something I actually did or thought about,
-          not general advice you could find anywhere else.
-        </p>
+          Newest first. Research projects, trading reflections, and notes from exploring finance.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
+        <div id="topic-filters" class="topic-filters" role="group" aria-label="Filter posts by topic"></div>
+        <p id="post-count" class="section__note" role="status" aria-live="polite"></p>
         <div class="card-list card-list--stack" id="all-posts">
-          <noscript>
-            <ul class="plainlist">
-              <li><a href="posts/cash-vs-stock-45-deals.html">Pfizer Wasn't Special. I Tested 45 Deals to Find Out.</a></li>
-              <li><a href="posts/i-built-a-tool-to-grade-memecoins.html">I Built a Tool to Grade Memecoins. Then I Spent a Month Breaking It.</a></li>
-              <li><a href="posts/pe-managing-partner-bet-on-one-sector.html">What I Learned From a PE Managing Partner Who Bet on One Sector</a></li>
-              <li><a href="posts/pfizer-buys-its-growth.html">Pfizer Buys Its Growth. I Checked If the Market Buys It.</a></li>
-              <li><a href="posts/doing-the-math-on-the-100-hour-week.html">Doing the Math on the 100-Hour Week</a></li>
-              <li><a href="posts/how-id-run-my-own-firm.html">How I'd Run My Own Firm</a></li>
-              <li><a href="posts/the-rule-doesnt-care-what-you-want.html">The Rule Doesn't Care What You Want: Backtesting Crude Oil</a></li>
-              <li><a href="posts/an-autopsy-of-a-losing-book.html">An Autopsy of a Losing Book: What My Gold Trades Taught Me</a></li>
-              <li><a href="posts/turning-eggs-in-one-basket-into-math.html">Turning "don't put all your eggs in one basket" into actual math</a></li>
-              <li><a href="posts/what-trading-and-investing-have-taught-me.html">What trading and investing have each taught me</a></li>
-              <li><a href="posts/the-career-i-almost-wrote-off.html">The career I almost wrote off</a></li>
-              <li><a href="posts/what-cold-outreach-taught-me.html">What cold outreach actually taught me</a></li>
-              <li><a href="posts/what-a-bad-trade-taught-me.html">The trade I managed well and still lost</a></li>
-              <li><a href="posts/first-mock-financial-plan.html">What I actually learned building my first mock financial plan</a></li>
-            </ul>
-          </noscript>
+          <noscript><ul class="plainlist"><li><a href="posts/cash-vs-stock-45-deals.html">Cash vs. Stock: What I Found in 45 Acquisitions</a></li><li><a href="posts/i-built-a-tool-to-grade-memecoins.html">A Month Testing My Memecoin Screener</a></li><li><a href="posts/pe-managing-partner-bet-on-one-sector.html">Why One PE Investor Sticks to Aerospace and Defense</a></li><li><a href="posts/pfizer-buys-its-growth.html">How the Market Reacted to Pfizer’s Acquisitions</a></li><li><a href="posts/doing-the-math-on-the-100-hour-week.html">Doing the Math on the 100-Hour Week</a></li><li><a href="posts/how-id-run-my-own-firm.html">How I&#x27;d Run My Own Firm</a></li><li><a href="posts/the-rule-doesnt-care-what-you-want.html">Backtesting a Moving-Average Rule on Crude Oil</a></li><li><a href="posts/an-autopsy-of-a-losing-book.html">Looking Back at My Losing Gold Trades</a></li><li><a href="posts/turning-eggs-in-one-basket-into-math.html">Putting Diversification Into Numbers</a></li><li><a href="posts/what-trading-and-investing-have-taught-me.html">What trading and investing have each taught me</a></li><li><a href="posts/the-career-i-almost-wrote-off.html">The career I almost wrote off</a></li><li><a href="posts/what-cold-outreach-taught-me.html">What cold outreach actually taught me</a></li><li><a href="posts/what-a-bad-trade-taught-me.html">The trade I managed well and still lost</a></li><li><a href="posts/first-mock-financial-plan.html">My First Mock Financial Plan</a></li></ul></noscript>
         </div>
       </div>
     </section>
@@ -126,14 +95,15 @@
           <li><a href="reading-list.html">Reading List</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="feed.xml">RSS feed</a></li>
         </ul>
       </nav>
       <p class="site-footer__note">Written by Liam Rodgers in Charleston, South Carolina.</p>
     </div>
   </footer>
 
-  <script src="assets/js/posts.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/posts.js?v=20260905"></script>
+  <script src="assets/js/main.js?v=20260905"></script>
   <script data-goatcounter="https://compoundingwithliam.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

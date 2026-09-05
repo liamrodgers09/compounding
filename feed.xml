@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss version="2.0">
+  <channel>
+    <title>Compounding by Liam Rodgers</title>
+    <link>https://compoundingwithliam.com/</link>
+    <description>Research, trading reflections, and field notes from learning finance.</description>
+    <language>en-us</language>
+    <item>
+      <title>Cash vs. Stock: What I Found in 45 Acquisitions</title>
+      <link>https://compoundingwithliam.com/posts/cash-vs-stock-45-deals.html</link>
+      <guid>https://compoundingwithliam.com/posts/cash-vs-stock-45-deals.html</guid>
+      <description>A comparison of cash- and stock-funded acquisitions, and the classification error that made me revisit the sample.</description>
+      <category>Research</category>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>A Month Testing My Memecoin Screener</title>
+      <link>https://compoundingwithliam.com/posts/i-built-a-tool-to-grade-memecoins.html</link>
+      <guid>https://compoundingwithliam.com/posts/i-built-a-tool-to-grade-memecoins.html</guid>
+      <description>Building a memecoin screener, testing where its score could be manipulated, and deciding which proposed fixes to reject.</description>
+      <category>Research</category>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Why One PE Investor Sticks to Aerospace and Defense</title>
+      <link>https://compoundingwithliam.com/posts/pe-managing-partner-bet-on-one-sector.html</link>
+      <guid>https://compoundingwithliam.com/posts/pe-managing-partner-bet-on-one-sector.html</guid>
+      <description>A conversation about sector specialization in aerospace and defense private equity.</description>
+      <category>Field Notes</category>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How the Market Reacted to Pfizer’s Acquisitions</title>
+      <link>https://compoundingwithliam.com/posts/pfizer-buys-its-growth.html</link>
+      <guid>https://compoundingwithliam.com/posts/pfizer-buys-its-growth.html</guid>
+      <description>An event study of eleven Pfizer acquisitions. Payment types showed different returns, but the small sample leaves uncertainty.</description>
+      <category>Research</category>
+      <pubDate>Tue, 07 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Doing the Math on the 100-Hour Week</title>
+      <link>https://compoundingwithliam.com/posts/doing-the-math-on-the-100-hour-week.html</link>
+      <guid>https://compoundingwithliam.com/posts/doing-the-math-on-the-100-hour-week.html</guid>
+      <description>Checking my assumptions about junior bankers' hours, compensation, and the tradeoffs of the job.</description>
+      <category>Field Notes</category>
+      <pubDate>Sat, 04 Jul 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>How I'd Run My Own Firm</title>
+      <link>https://compoundingwithliam.com/posts/how-id-run-my-own-firm.html</link>
+      <guid>https://compoundingwithliam.com/posts/how-id-run-my-own-firm.html</guid>
+      <description>A proposed investment approach, two tools I built, and the parts I have yet to test.</description>
+      <category>Research</category>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Backtesting a Moving-Average Rule on Crude Oil</title>
+      <link>https://compoundingwithliam.com/posts/the-rule-doesnt-care-what-you-want.html</link>
+      <guid>https://compoundingwithliam.com/posts/the-rule-doesnt-care-what-you-want.html</guid>
+      <description>Testing a moving-average rule on eighteen years of crude oil futures data, and examining why it lagged buy-and-hold.</description>
+      <category>Research</category>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Looking Back at My Losing Gold Trades</title>
+      <link>https://compoundingwithliam.com/posts/an-autopsy-of-a-losing-book.html</link>
+      <guid>https://compoundingwithliam.com/posts/an-autopsy-of-a-losing-book.html</guid>
+      <description>Thirteen simulated gold trades, a losing account, and the limits of what a directional breakdown can explain.</description>
+      <category>Trading Journal</category>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Putting Diversification Into Numbers</title>
+      <link>https://compoundingwithliam.com/posts/turning-eggs-in-one-basket-into-math.html</link>
+      <guid>https://compoundingwithliam.com/posts/turning-eggs-in-one-basket-into-math.html</guid>
+      <description>Building a five-year portfolio model and tracing the bugs behind the first version of the chart.</description>
+      <category>Research</category>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>What trading and investing have each taught me</title>
+      <link>https://compoundingwithliam.com/posts/what-trading-and-investing-have-taught-me.html</link>
+      <guid>https://compoundingwithliam.com/posts/what-trading-and-investing-have-taught-me.html</guid>
+      <description>What I have learned from futures trading and holding index funds, and how I think about their different purposes.</description>
+      <category>Trading Journal</category>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The career I almost wrote off</title>
+      <link>https://compoundingwithliam.com/posts/the-career-i-almost-wrote-off.html</link>
+      <guid>https://compoundingwithliam.com/posts/the-career-i-almost-wrote-off.html</guid>
+      <description>How an early search about finance developed into an interest in investment banking and M&amp;A.</description>
+      <category>Field Notes</category>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>What cold outreach actually taught me</title>
+      <link>https://compoundingwithliam.com/posts/what-cold-outreach-taught-me.html</link>
+      <guid>https://compoundingwithliam.com/posts/what-cold-outreach-taught-me.html</guid>
+      <description>Cold emailing finance professionals in Charleston: the silence, the replies, and what I learned from one yes.</description>
+      <category>Field Notes</category>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>The trade I managed well and still lost</title>
+      <link>https://compoundingwithliam.com/posts/what-a-bad-trade-taught-me.html</link>
+      <guid>https://compoundingwithliam.com/posts/what-a-bad-trade-taught-me.html</guid>
+      <description>Revisiting an April 8 entry during a sell-off and separating the entry decision from trade management.</description>
+      <category>Trading Journal</category>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>My First Mock Financial Plan</title>
+      <link>https://compoundingwithliam.com/posts/first-mock-financial-plan.html</link>
+      <guid>https://compoundingwithliam.com/posts/first-mock-financial-plan.html</guid>
+      <description>Working through a mock couple's debt, goals, and budget in RightCapital during my shadowing experience.</description>
+      <category>Field Notes</category>
+      <pubDate>Fri, 19 Jun 2026 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
